@@ -10,7 +10,7 @@ using Tools;
 
 namespace ModelGlobal.Services
 {
-    public class DisponobilitiesGlobalService : BaseService, IRepoDisponibilities<DisponibilitiesGlobal>
+    public class DisponibilitiesGlobalService : BaseService, IRepoDisponibilities<DisponibilitiesGlobal>
     {
         public bool Delete(int id)
         {
