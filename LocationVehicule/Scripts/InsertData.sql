@@ -154,6 +154,7 @@ INSERT INTO [Contract] (Id, ContractNum, RealReturnDate, ContractDate, AmountTot
 (5, 2020050905, '2018-03-02 00:00:00', '2018-04-02 00:00:00', 1500.99, 2200, 0, 5, 5, 5)
 Set Identity_insert [Contract] off;
 --la valeur max qu'on peut attribuer à un entier est 2147483647 passe ton contract id en double
+
 --Data Bill--
 
 Set Identity_insert [Bill] on;

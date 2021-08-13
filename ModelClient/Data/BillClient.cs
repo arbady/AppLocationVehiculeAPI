@@ -11,7 +11,7 @@ namespace ModelClient.Data
     {
         public BillClient(){}
         public BillClient(int billNum, string wording, DateTime billDate, float amountTotHTVA, 
-            float amountTotTVA, bool paid, int contractId, int paymentMethodeId)
+            float amountTotTVA, bool paid, int contractId, int paymentMethodId)
         {
             BillNum = billNum;
             Wording = wording;
@@ -20,10 +20,10 @@ namespace ModelClient.Data
             AmountTotTVA = amountTotTVA;
             Paid = paid;
             ContractId = contractId;
-            PaymentMethodeId = paymentMethodeId;
+            PaymentMethodId = paymentMethodId;
         }
         public BillClient(int id, int billNum, string wording, DateTime billDate, float amountTotHTVA,
-            float amountTotTVA, bool paid, int contractId, int paymentMethodeId)
+            float amountTotTVA, bool paid, int contractId, int paymentMethodId)
         {
             Id = id;
             BillNum = billNum;
@@ -33,7 +33,7 @@ namespace ModelClient.Data
             AmountTotTVA = amountTotTVA;
             Paid = paid;
             ContractId = contractId;
-            PaymentMethodeId = paymentMethodeId;
+            PaymentMethodId = paymentMethodId;
         }
 
     }

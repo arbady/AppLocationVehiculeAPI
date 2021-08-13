@@ -48,7 +48,7 @@ namespace ModelGlobal.Services
             command.AddParameter("AmountTotTVA", bill.AmountTotTVA);
             command.AddParameter("Paid", bill.Paid);
             command.AddParameter("ContractId", bill.ContractId);
-            command.AddParameter("PaymentMethodId", bill.PaymentMethodeId);
+            command.AddParameter("PaymentMethodId", bill.PaymentMethodId);
             //le output inserted.id me permet de récupérer la valeur de l'id autoincrémenter et de le renvoyer.
             return (int)_connection.ExecuteScalar(command);
         }
@@ -66,7 +66,7 @@ namespace ModelGlobal.Services
             command.AddParameter("AmountTotTVA", bill.AmountTotTVA);
             command.AddParameter("Paid", bill.Paid);
             command.AddParameter("ContractId", bill.ContractId);
-            command.AddParameter("PaymentMethodId", bill.PaymentMethodeId);
+            command.AddParameter("PaymentMethodId", bill.PaymentMethodId);
             command.AddParameter("id", id);
             //quoi qu'il arrive le resultat sera le nbr de ligne modifié
             //pour renvoyer un boolean, je fais un test == 1

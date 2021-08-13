@@ -20,11 +20,12 @@ namespace ModelClient.Data
         public string Phone { get; set; }
         public string Email { get; set; }
         public byte[] Password { get; set; }
+        public Role Role { get; set; }
         public string Salt { get; set; }
 
         public UserClient(){}
 
-        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, string salt)
+        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, Role role, string salt)
         {
             Id = id;
             FirstName = firstName;
@@ -36,9 +37,10 @@ namespace ModelClient.Data
             Phone = phone;
             Email = email;
             Password = password;
+            Role = role;
             Salt = salt;
         }
-        public UserClient(string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, string salt)
+        public UserClient(string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, Role role, string salt)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -49,6 +51,7 @@ namespace ModelClient.Data
             Phone = phone;
             Email = email;
             Password = password;
+            Role = role;
             Salt = salt;
         }
     }

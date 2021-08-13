@@ -16,6 +16,6 @@ namespace ModelGlobal.Data
         public float AmountTotTVA { get; set; }
         public bool Paid { get; set; }
         public int ContractId { get; set; }
-        public int PaymentMethodeId { get; set; }
+        public int PaymentMethodId { get; set; }
     }
 }

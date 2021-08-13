@@ -45,9 +45,9 @@ namespace ModelGlobal.Mapper
                 BillDate = (DateTime)reader[nameof(BillGlobal.BillDate)],
                 AmountTotHTVA = (float)reader[nameof(BillGlobal.AmountTotHTVA)],
                 AmountTotTVA = (float)reader[nameof(BillGlobal.AmountTotTVA)],
-                Paid = (bool)reader[nameof(BillGlobal.Id)],
+                Paid = (bool)reader[nameof(BillGlobal.Paid)],
                 ContractId = (int)reader[nameof(BillGlobal.ContractId)],
-                PaymentMethodeId = (int)reader[nameof(BillGlobal.PaymentMethodeId)]
+                PaymentMethodId = (int)reader[nameof(BillGlobal.PaymentMethodId)]
             };
         }
         #endregion
