@@ -37,14 +37,14 @@ namespace LocationVehicule.API.Controllers
             return _agencyService.Post(agency.ToAgencyClient());
         }
 
-        // PUT: api/VideoGame/5
+        // PUT: api/Agency/5
         [HttpPut]
         public bool Put(int id, [FromBody] AgencyApi agency)
         {
             return _agencyService.Put(id, agency.ToAgencyClient());
         }
 
-        // DELETE: api/VideoGame/3
+        // DELETE: api/Agency/3
         [HttpDelete]
         public bool Delete(int id)
         {
