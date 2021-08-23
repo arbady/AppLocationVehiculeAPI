@@ -12,15 +12,14 @@ Modèle de script de post-déploiement
 
 --Data User--
 
-Set Identity_insert [User] on;
-INSERT INTO [User] 
-(Id, FirstName, LastName, Sex, DateOfBirth, Email, [Password], RegistrationDate, [Address], Phone, [Role]) VALUES
-(1, 'Mpoyi', 'Arnold', 1, '1986-04-30 00:00:00', 'arnoldmpoyi@yahoo.fr', 'test1234=', '2020-09-09 00:00:00', '2/3 Clos des Ormes 7080 Frameries', '+32466423930', 1),
-(2, 'Buanga', 'Steve', 1, '1980-08-10 00:00:00', 'badispace@gmail.com', 'test1234=', '2021-10-19 00:00:00', '54 Cités des petites préelles 7330 Saint-Ghislain', '+32489425753', 2),
-(3, 'Luyi', 'Stephanie', 2, '1995-12-01 00:00:00', 'stephanieluyi@gmail.com', 'test1234=', '2019-02-08 00:00:00', '2 Docteur Colson 1430 Rebecq', '+32466103965', 2),
-(4, 'Skou', 'Isabelle', 2, '1980-08-12 00:00:00', 'isaskou@yahoo.fr', 'test1234=', '2021-05-08 00:00:00', '23 Rue des Oliviers 1000 Bruxelles', '+32492423441', 2),
-(5, 'Ntumba', 'Vanessa', 2, '1992-06-18 00:00:00', 'vanebad@gmail.com', 'test1234=', '2018-03-02 00:00:00', '14 Cité de l''Abbaye 7340 Colfontaine', '+32475428967', 2)
-Set Identity_insert [User] off;
+/*Set Identity_insert [User] on;*/
+
+EXEC SP_InsertUser 'Mpoyi', 'Arnold', 1, '1986-04-30 00:00:00', 'arnoldmpoyi@yahoo.fr', '2020-09-09 00:00:00', '2/3 Clos des Ormes 7080 Frameries', '+32466423930', 1, 'test1234='
+EXEC SP_InsertUser 'Buanga', 'Steve', 1, '1980-08-10 00:00:00', 'badispace@gmail.com', '2021-10-19 00:00:00', '54 Cités des petites préelles 7330 Saint-Ghislain', '+32489425753', 2, 'test1234='
+EXEC SP_InsertUser 'Luyi', 'Stephanie', 2, '1995-12-01 00:00:00', 'stephanieluyi@gmail.com', '2019-02-08 00:00:00', '2 Docteur Colson 1430 Rebecq', '+32466103965', 2, 'test1234='
+EXEC SP_InsertUser 'Skou', 'Isabelle', 2, '1980-08-12 00:00:00', 'isaskou@yahoo.fr', '2021-05-08 00:00:00', '23 Rue des Oliviers 1000 Bruxelles', '+32492423441', 2, 'test1234='
+EXEC SP_InsertUser 'Ntumba', 'Vanessa', 2, '1992-06-18 00:00:00', 'vanebad@gmail.com', '2018-03-02 00:00:00', '14 Cité de l''Abbaye 7340 Colfontaine', '+32475428967', 2, 'test1234='
+/*Set Identity_insert [User] off;*/
 
 --Data Agency--
 

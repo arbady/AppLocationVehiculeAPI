@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tools.SecurityTools;
 
 namespace ModelClient.Mapper
 {
@@ -13,7 +14,7 @@ namespace ModelClient.Mapper
         #region Agency
         internal static AgencyGlobal ToAgencyGlobal(this AgencyClient agency)
         {
-            return new AgencyGlobal()
+            return new AgencyGlobal
             {
                 Id = agency.Id,
                 Code = agency.Code,
@@ -29,7 +30,7 @@ namespace ModelClient.Mapper
         internal static AgencyClient ToAgencyClient(this AgencyGlobal agency)
         {
             return new AgencyClient(
-                agency.Id, agency.Code, agency.Airport, agency.Address, agency.ZipCode, agency.City, 
+                agency.Id, agency.Code, agency.Airport, agency.Address, agency.ZipCode, agency.City,
                 agency.Country, agency.IsClosed);
         }
         #endregion
@@ -37,7 +38,7 @@ namespace ModelClient.Mapper
         #region Bill
         internal static BillGlobal ToBillGlobal(this BillClient bill)
         {
-            return new BillGlobal()
+            return new BillGlobal
             {
                 Id = bill.Id,
                 BillNum = bill.BillNum,
@@ -61,7 +62,7 @@ namespace ModelClient.Mapper
         #region Category
         internal static CategoryGlobal ToCategoryGlobal(this CategoryClient category)
         {
-            return new CategoryGlobal()
+            return new CategoryGlobal
             {
                 Id = category.Id,
                 TypeCat = category.TypeCat,
@@ -77,7 +78,7 @@ namespace ModelClient.Mapper
         #region Contract
         internal static ContractGlobal ToContractGlobal(this ContractClient contract)
         {
-            return new ContractGlobal()
+            return new ContractGlobal
             {
                 Id = contract.Id,
                 ContractNum = contract.ContractNum,
@@ -95,9 +96,9 @@ namespace ModelClient.Mapper
         }
         internal static ContractClient ToContractClient(this ContractGlobal contract)
         {
-            return new ContractClient(contract.Id, contract.ContractNum, contract.RealReturnDate, 
-                contract.DepartKm, contract.BackKm, contract.ContractDate, contract.AmountTotHTVA, 
-                contract.AmountTotTVA, contract.Signed, contract.ReservationId, contract.PenalizationId, 
+            return new ContractClient(contract.Id, contract.ContractNum, contract.RealReturnDate,
+                contract.DepartKm, contract.BackKm, contract.ContractDate, contract.AmountTotHTVA,
+                contract.AmountTotTVA, contract.Signed, contract.ReservationId, contract.PenalizationId,
                 contract.VehicleId);
         }
         #endregion
@@ -105,7 +106,7 @@ namespace ModelClient.Mapper
         #region Disponibilities
         internal static DisponibilitiesGlobal ToDisponibilitiesGlobal(this DisponibilitiesClient disponibilities)
         {
-            return new DisponibilitiesGlobal()
+            return new DisponibilitiesGlobal
             {
                 Id = disponibilities.Id,
                 AvailDateDepart = disponibilities.AvailDateDepart,
@@ -117,7 +118,7 @@ namespace ModelClient.Mapper
         internal static DisponibilitiesClient ToDisponibilitiesClient(this DisponibilitiesGlobal disponibilities)
         {
             return new DisponibilitiesClient(
-                disponibilities.Id, disponibilities.AvailDateDepart, disponibilities.AvailDateReturn, 
+                disponibilities.Id, disponibilities.AvailDateDepart, disponibilities.AvailDateReturn,
                 disponibilities.AgencyId, disponibilities.VehicleId);
         }
         #endregion
@@ -125,7 +126,7 @@ namespace ModelClient.Mapper
         #region Licence
         internal static LicenceGlobal ToLicenceGlobal(this LicenceClient licence)
         {
-            return new LicenceGlobal()
+            return new LicenceGlobal
             {
                 Id = licence.Id,
                 LicenceCat = licence.LicenceCat,
@@ -141,7 +142,7 @@ namespace ModelClient.Mapper
         #region Mark
         internal static MarkGlobal ToMarkGlobal(this MarkClient mark)
         {
-            return new MarkGlobal()
+            return new MarkGlobal
             {
                 Id = mark.Id,
                 Name = mark.Name
@@ -156,7 +157,7 @@ namespace ModelClient.Mapper
         #region Model
         internal static ModelGlobale ToModelGlobal(this ModeleClient model)
         {
-            return new ModelGlobale()
+            return new ModelGlobale
             {
                 Id = model.Id,
                 Name = model.Name,
@@ -172,7 +173,7 @@ namespace ModelClient.Mapper
         #region PaymentMethode
         internal static PaymentMethodGlobal ToPaymentMethodGlobal(this PaymentMethodClient payment)
         {
-            return new PaymentMethodGlobal()
+            return new PaymentMethodGlobal
             {
                 Id = payment.Id,
                 Method = payment.Method
@@ -187,7 +188,7 @@ namespace ModelClient.Mapper
         #region Penalization
         internal static PenalizationGlobal ToPenalizationGlobal(this PenalizationClient penalization)
         {
-            return new PenalizationGlobal()
+            return new PenalizationGlobal
             {
                 Id = penalization.Id,
                 Description = penalization.Description,
@@ -199,7 +200,7 @@ namespace ModelClient.Mapper
         internal static PenalizationClient ToPenalizationClient(this PenalizationGlobal penalization)
         {
             return new PenalizationClient(
-                penalization.Id, penalization.Description, penalization.PenalDate, penalization.AmountOwed, 
+                penalization.Id, penalization.Description, penalization.PenalDate, penalization.AmountOwed,
                 penalization.AmountPaid);
         }
         #endregion
@@ -207,7 +208,7 @@ namespace ModelClient.Mapper
         #region Reservation
         internal static ReservationGlobal ToReservationGlobal(this ReservationClient reservation)
         {
-            return new ReservationGlobal()
+            return new ReservationGlobal
             {
                 Id = reservation.Id,
                 ReservationDate = reservation.ReservationDate,
@@ -230,10 +231,10 @@ namespace ModelClient.Mapper
         internal static ReservationClient ToReservationClient(this ReservationGlobal reservation)
         {
             return new ReservationClient(
-                reservation.Id, reservation.ReservationDate, reservation.StartDateLocation, 
-                reservation.EndDateLocation, reservation.AmountTotTVA, reservation.Deposit, 
-                reservation.DepositPaid, reservation.ReservationStatus, reservation.ReturnAgency, 
-                reservation.DamageCover, reservation.RobberyCover, reservation.AgeRange, reservation.PaidAll, 
+                reservation.Id, reservation.ReservationDate, reservation.StartDateLocation,
+                reservation.EndDateLocation, reservation.AmountTotTVA, reservation.Deposit,
+                reservation.DepositPaid, reservation.ReservationStatus, reservation.ReturnAgency,
+                reservation.DamageCover, reservation.RobberyCover, reservation.AgeRange, reservation.PaidAll,
                 reservation.IsCancelled, reservation.UserId, reservation.AgencyId, reservation.CategoryId);
         }
         #endregion
@@ -241,7 +242,7 @@ namespace ModelClient.Mapper
         #region State
         internal static StateGlobal ToStateGlobal(this StateClient state)
         {
-            return new StateGlobal()
+            return new StateGlobal
             {
                 Id = state.Id,
                 StateType = state.StateType,
@@ -254,37 +255,37 @@ namespace ModelClient.Mapper
         }
         #endregion
 
-        //A revoir par rapport au token et salt
         #region User
         internal static UserGlobal ToUserGlobal(this UserClient user)
         {
-            return new UserGlobal()
+            if (user is null) return null;
+            return new UserGlobal
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Sex = user.Sex,
-                DateOfBirth = user.DateOfBirth,
+                BirthDate = user.BirthDate,
                 Email = user.Email,
                 Password = user.Password,
                 RegistrationDate = user.RegistrationDate,
                 Address = user.Address,
                 Phone = user.Phone,
-                Role = user.Role
+                Role = user.Role,
             };
         }
         internal static UserClient ToUserClient(this UserGlobal user)
         {
             return new UserClient(
-                user.Id, user.FirstName, user.LastName, user.Sex, user.DateOfBirth, user.RegistrationDate, 
-                user.Address, user.Phone, user.Email, user.Password, user.Role, user.Token);
+                user.Id, user.FirstName, user.LastName, user.Sex, user.BirthDate, user.RegistrationDate, 
+                user.Address, user.Phone, user.Email, user.Password, user.Role);
         }
         #endregion
 
         #region Vehicle
         internal static VehicleGlobal ToVehicleGlobal(this VehicleClient vehicle)
         {
-            return new VehicleGlobal()
+            return new VehicleGlobal
             {
                 Id = vehicle.Id,
                 RegistrationNum = vehicle.RegistrationNum,

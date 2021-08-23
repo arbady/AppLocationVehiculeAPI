@@ -17,7 +17,7 @@ namespace ModelGlobal.Data
         public Fuel Fuel { get; set; }
         public bool AirCo { get; set; }
         public bool Gps { get; set; }
-        public Transmission Transmission { get; set; }
+        public Transmission? Transmission { get; set; }
         public int StateId { get; set; }
         public int ModelId { get; set; }
         public int CategoryId { get; set; }

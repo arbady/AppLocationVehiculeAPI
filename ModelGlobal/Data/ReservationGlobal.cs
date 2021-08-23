@@ -12,8 +12,8 @@ namespace ModelGlobal.Data
         public DateTime ReservationDate { get; set; }
         public DateTime StartDateLocation { get; set; }
         public DateTime EndDateLocation { get; set; }
-        public float AmountTotTVA { get; set; }
-        public float Deposit { get; set; }
+        public double AmountTotTVA { get; set; }
+        public double Deposit { get; set; }
         public bool DepositPaid { get; set; }
         public bool ReservationStatus { get; set; }
         public string ReturnAgency { get; set; }

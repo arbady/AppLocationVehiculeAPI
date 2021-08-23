@@ -11,7 +11,7 @@ namespace LocationVehicule.API.Models
 {
     public class CategoryApi : CategoryClient
     {      
-        public CategoryApi(int id, TypeCat typeCat, float costPerDay)
+        public CategoryApi(int id, TypeCat typeCat, double costPerDay)
         {
             Id = id;
             TypeCat = typeCat;

@@ -1,5 +1,6 @@
 ﻿using LocationVehicule.API.Mapper;
 using LocationVehicule.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Services;
@@ -38,14 +39,16 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Agency/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
+        //[Authorize]
         public bool Put(int id, [FromBody] AgencyApi agency)
         {
+            agency.Id = id;
             return _agencyService.Put(id, agency.ToAgencyClient());
         }
 
         // DELETE: api/Agency/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _agencyService.Delete(id);

@@ -11,7 +11,7 @@ namespace ModelGlobal.Data
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime PenalDate { get; set; }
-        public float AmountOwed { get; set; }
-        public float AmountPaid { get; set; }
+        public double AmountOwed { get; set; }
+        public double AmountPaid { get; set; }
     }
 }

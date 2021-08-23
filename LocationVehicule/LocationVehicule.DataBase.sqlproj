@@ -60,6 +60,7 @@
     <Folder Include="Views" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Scripts" />
+    <Folder Include="ScalarFunctions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Agency.sql" />
@@ -78,6 +79,8 @@
     <Build Include="Tables\Penalization.sql" />
     <Build Include="Tables\Reservation.sql" />
     <Build Include="StoredProcedures\DeleteAgency.sql" />
+    <Build Include="ScalarFunctions\SF_HashingPassword.sql" />
+    <Build Include="StoredProcedures\SP_InsertUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LocationVehicule.DataBase.refactorlog" />

@@ -10,7 +10,7 @@ namespace LocationVehicule.API.Models
 {
     public class ReservationApi : ReservationClient
     {
-        public ReservationApi(int id, DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, float amountTotTVA, float deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
+        public ReservationApi(int id, DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, double amountTotTVA, double deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
         {
             Id = id;
             ReservationDate = reservationDate;

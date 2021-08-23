@@ -10,7 +10,7 @@ namespace LocationVehicule.API.Models
 {
     public class ContractApi : ContractClient
     {
-        public ContractApi(int id, int contractNum, DateTime realReturnDate, string departKm, string backKm, DateTime contractDate, float amountTotHTVA, float amountTotTVA, bool signed, int reservationId, int vehicleId, int penalizationId)
+        public ContractApi(int id, int contractNum, DateTime realReturnDate, string departKm, string backKm, DateTime contractDate, double amountTotHTVA, double amountTotTVA, bool signed, int reservationId, int vehicleId, int penalizationId)
         {
             Id = id;
             ContractNum = contractNum;

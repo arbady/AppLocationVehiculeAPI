@@ -10,7 +10,7 @@ namespace ModelClient.Data
     public class ReservationClient : ReservationGlobal
     {
         public ReservationClient(){}
-        public ReservationClient(int id, DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, float amountTotTVA, float deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
+        public ReservationClient(int id, DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, double amountTotTVA, double deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
         {
             Id = id;
             ReservationDate = reservationDate;
@@ -30,7 +30,7 @@ namespace ModelClient.Data
             AgencyId = agencyId;
             CategoryId = categoryId;
         }
-        public ReservationClient(DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, float amountTotTVA, float deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
+        public ReservationClient(DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, double amountTotTVA, double deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
         {
             ReservationDate = reservationDate;
             StartDateLocation = startDateLocation;

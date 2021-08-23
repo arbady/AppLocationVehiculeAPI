@@ -11,7 +11,7 @@ namespace ModelClient.Data
     public class VehicleClient : VehicleGlobal
     {
         public VehicleClient(){}
-        public VehicleClient(int id, string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission transmission, int stateId, int modelId, int categoryId)
+        public VehicleClient(int id, string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, int categoryId)
         {
             Id = id;
             RegistrationNum = registrationNum;
@@ -26,7 +26,7 @@ namespace ModelClient.Data
             ModelId = modelId;
             CategoryId = categoryId;
         }
-        public VehicleClient(string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission transmission, int stateId, int modelId, int categoryId)
+        public VehicleClient(string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, int categoryId)
         {
             RegistrationNum = registrationNum;
             Characteristic = characteristic;

@@ -12,7 +12,7 @@ namespace ModelGlobal.Mapper
 {
     internal static class Mapper
     {
-        //protected bool CheckIfNull(object entity)
+        //protected static bool CheckIfNull(object entity)
         //{
         //    return entity is null;
         //}
@@ -40,11 +40,11 @@ namespace ModelGlobal.Mapper
             return new BillGlobal()
             {
                 Id = (int)reader[nameof(BillGlobal.Id)],
-                BillNum = (int)reader[nameof(BillGlobal.BillNum)],
+                BillNum = (string)reader[nameof(BillGlobal.BillNum)],
                 Wording = (string)reader[nameof(BillGlobal.Wording)],
                 BillDate = (DateTime)reader[nameof(BillGlobal.BillDate)],
-                AmountTotHTVA = (float)reader[nameof(BillGlobal.AmountTotHTVA)],
-                AmountTotTVA = (float)reader[nameof(BillGlobal.AmountTotTVA)],
+                AmountTotHTVA = (double)reader[nameof(BillGlobal.AmountTotHTVA)],
+                AmountTotTVA = (double)reader[nameof(BillGlobal.AmountTotTVA)],
                 Paid = (bool)reader[nameof(BillGlobal.Paid)],
                 ContractId = (int)reader[nameof(BillGlobal.ContractId)],
                 PaymentMethodId = (int)reader[nameof(BillGlobal.PaymentMethodId)]
@@ -59,7 +59,7 @@ namespace ModelGlobal.Mapper
             {
                 Id = (int)reader[nameof(CategoryGlobal.Id)],
                 TypeCat = (TypeCat)reader[nameof(CategoryGlobal.TypeCat)],
-                CostPerDay = (float)reader[nameof(CategoryGlobal.CostPerDay)]
+                CostPerDay = (double)reader[nameof(CategoryGlobal.CostPerDay)]
             };
         }
         #endregion
@@ -72,11 +72,11 @@ namespace ModelGlobal.Mapper
                 Id = (int)reader[nameof(ContractGlobal.Id)],
                 ContractNum = (int)reader[nameof(ContractGlobal.ContractNum)],
                 RealReturnDate = (DateTime)reader[nameof(ContractGlobal.RealReturnDate)],
-                DepartKm = (string)reader[nameof(ContractGlobal.DepartKm)],
-                BackKm = (string)reader[nameof(ContractGlobal.BackKm)],
+                DepartKm = (string)(reader[nameof(ContractGlobal.DepartKm)] is DBNull?  null : reader[nameof(ContractGlobal.DepartKm)]),
+                BackKm = (string)(reader[nameof(ContractGlobal.BackKm)] is DBNull? null : reader[nameof(ContractGlobal.BackKm)]),
                 ContractDate = (DateTime)reader[nameof(ContractGlobal.ContractDate)],
-                AmountTotHTVA = (float)reader[nameof(ContractGlobal.AmountTotHTVA)],
-                AmountTotTVA = (float)reader[nameof(ContractGlobal.AmountTotTVA)],
+                AmountTotHTVA = (double)reader[nameof(ContractGlobal.AmountTotHTVA)],
+                AmountTotTVA = (double)reader[nameof(ContractGlobal.AmountTotTVA)],
                 Signed = (bool)reader[nameof(ContractGlobal.Signed)],
                 ReservationId = (int)reader[nameof(ContractGlobal.ReservationId)],
                 PenalizationId = (int)reader[nameof(ContractGlobal.PenalizationId)],
@@ -148,14 +148,16 @@ namespace ModelGlobal.Mapper
         #region Penalization
         internal static PenalizationGlobal ToPenalization(this IDataRecord reader)
         {
+            //if (Description == null) ? string.Empty : Description.ToString()
             return new PenalizationGlobal()
             {
                 Id = (int)reader[nameof(PenalizationGlobal.Id)],
-                Description = (string)reader[nameof(PenalizationGlobal.Description)],
+                Description = (string)(reader[nameof(PenalizationGlobal.Description)] is DBNull ? null : reader[nameof(PenalizationGlobal.Description)]),
                 PenalDate = (DateTime)reader[nameof(PenalizationGlobal.PenalDate)],
-                AmountOwed = (float)reader[nameof(PenalizationGlobal.AmountOwed)],
-                AmountPaid = (float)reader[nameof(PenalizationGlobal.AmountPaid)]
+                AmountOwed = (double)reader[nameof(PenalizationGlobal.AmountOwed)],
+                AmountPaid = (double)reader[nameof(PenalizationGlobal.AmountPaid)]
             };
+
         }
         #endregion
 
@@ -168,8 +170,8 @@ namespace ModelGlobal.Mapper
                 ReservationDate = (DateTime)reader[nameof(ReservationGlobal.ReservationDate)],
                 StartDateLocation = (DateTime)reader[nameof(ReservationGlobal.StartDateLocation)],
                 EndDateLocation = (DateTime)reader[nameof(ReservationGlobal.EndDateLocation)],
-                AmountTotTVA = (float)reader[nameof(ReservationGlobal.AmountTotTVA)],
-                Deposit = (float)reader[nameof(ReservationGlobal.Deposit)],
+                AmountTotTVA = (double)reader[nameof(ReservationGlobal.AmountTotTVA)],
+                Deposit = (double)reader[nameof(ReservationGlobal.Deposit)],
                 DepositPaid = (bool)reader[nameof(ReservationGlobal.DepositPaid)],
                 ReturnAgency = (string)reader[nameof(ReservationGlobal.ReturnAgency)],
                 DamageCover = (bool)reader[nameof(ReservationGlobal.DamageCover)],
@@ -191,7 +193,7 @@ namespace ModelGlobal.Mapper
             {
                 Id = (int)reader[nameof(StateGlobal.Id)],
                 StateType = (StateType)reader[nameof(StateGlobal.StateType)],
-                Description = (string)reader[nameof(StateGlobal.Description)]
+                Description = (string)(reader[nameof(StateGlobal.Description)] is DBNull ? null : reader[nameof(StateGlobal.Description)])
             };
         }
         #endregion
@@ -205,13 +207,13 @@ namespace ModelGlobal.Mapper
                 FirstName = (string)reader[nameof(UserGlobal.FirstName)],
                 LastName = (string)reader[nameof(UserGlobal.LastName)],
                 Sex = (Sex)reader[nameof(UserGlobal.Sex)],
-                DateOfBirth = (DateTime)reader[nameof(UserGlobal.DateOfBirth)],
+                BirthDate = (DateTime)reader[nameof(UserGlobal.BirthDate)],
                 Email = (string)reader[nameof(UserGlobal.Email)],
-                Password = (byte[])reader[nameof(UserGlobal.Password)],
+                Password = "********",
                 RegistrationDate = (DateTime)reader[nameof(UserGlobal.RegistrationDate)],
                 Address = (string)reader[nameof(UserGlobal.Address)],
                 Phone = (string)reader[nameof(UserGlobal.Phone)],
-                Role = (Role)reader[nameof(UserGlobal.Role)]
+                Role = (Role)reader[nameof(UserGlobal.Role)],
             };
         }
         #endregion
@@ -223,13 +225,13 @@ namespace ModelGlobal.Mapper
             {
                 Id = (int)reader[nameof(VehicleGlobal.Id)],
                 RegistrationNum = (string)reader[nameof(VehicleGlobal.RegistrationNum)],
-                Characteristic = (string)reader[nameof(VehicleGlobal.Characteristic)],
+                Characteristic = (string)(reader[nameof(VehicleGlobal.Characteristic)] is DBNull? null : reader[nameof(VehicleGlobal.Characteristic)]),
                 NbPlace = (NbPlace)reader[nameof(VehicleGlobal.NbPlace)],
                 NbDoor = (NbDoor)reader[nameof(VehicleGlobal.NbDoor)],
                 Fuel = (Fuel)reader[nameof(VehicleGlobal.Fuel)],
                 AirCo = (bool)reader[nameof(VehicleGlobal.AirCo)],
                 Gps = (bool)reader[nameof(VehicleGlobal.Gps)],
-                Transmission = (Transmission)reader[nameof(VehicleGlobal.Transmission)],
+                Transmission = (Transmission?)(reader[nameof(VehicleGlobal.Transmission)] is DBNull? null : reader[nameof(VehicleGlobal.Transmission)]),
                 StateId = (int)reader[nameof(VehicleGlobal.StateId)],
                 ModelId = (int)reader[nameof(VehicleGlobal.ModelId)],
                 CategoryId = (int)reader[nameof(VehicleGlobal.CategoryId)]

@@ -11,7 +11,7 @@ namespace LocationVehicule.API.Models
 {
     public class VehicleApi : VehicleClient
     {
-        public VehicleApi(int id, string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission transmission, int stateId, int modelId, int categoryId)
+        public VehicleApi(int id, string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, int categoryId)
         {
             Id = id;
             RegistrationNum = registrationNum;

@@ -10,14 +10,14 @@ namespace ModelClient.Data
     public class PenalizationClient : PenalizationGlobal
     {
         public PenalizationClient(){}
-        public PenalizationClient(string description, DateTime penalDate, float amountOwed, float amountPaid)
+        public PenalizationClient(string description, DateTime penalDate, double amountOwed, double amountPaid)
         {
             Description = description;
             PenalDate = penalDate;
             AmountOwed = amountOwed;
             AmountPaid = amountPaid;
         }
-        public PenalizationClient(int id, string description, DateTime penalDate, float amountOwed, float amountPaid)
+        public PenalizationClient(int id, string description, DateTime penalDate, double amountOwed, double amountPaid)
         {
             Id = id;
             Description = description;

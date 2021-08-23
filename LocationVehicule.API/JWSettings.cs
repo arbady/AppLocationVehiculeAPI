@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Tools.SecurityTools
+namespace LocationVehicule.API
 {
-    public interface ISecurity
+    public class JWSettings
     {
+        public string SecretKey { get; set; }
     }
 }

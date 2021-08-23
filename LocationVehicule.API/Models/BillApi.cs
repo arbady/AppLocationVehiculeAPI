@@ -10,8 +10,8 @@ namespace LocationVehicule.API.Models
 {
     public class BillApi : BillClient
     {
-        public BillApi(int id, int billNum, string wording, DateTime billDate, float amountTotHTVA,
-            float amountTotTVA, bool paid, int contractId, int paymentMethodId)
+        public BillApi(int id, string billNum, string wording, DateTime billDate, double amountTotHTVA,
+            double amountTotTVA, bool paid, int contractId, int paymentMethodId)
         {
             Id = id;
             BillNum = billNum;

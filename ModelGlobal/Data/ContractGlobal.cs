@@ -14,8 +14,8 @@ namespace ModelGlobal.Data
         public string DepartKm { get; set; }
         public string BackKm { get; set; }
         public DateTime ContractDate { get; set; }
-        public float AmountTotHTVA { get; set; }
-        public float AmountTotTVA { get; set; }
+        public double AmountTotHTVA { get; set; }
+        public double AmountTotTVA { get; set; }
         public bool Signed { get; set; }
         public int ReservationId { get; set; }
         public int VehicleId { get; set; }

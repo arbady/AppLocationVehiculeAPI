@@ -10,7 +10,7 @@ namespace LocationVehicule.API.Models
 {
     public class PenalizationApi : PenalizationClient
     {
-        public PenalizationApi(int id, string description, DateTime penalDate, float amountOwed, float amountPaid)
+        public PenalizationApi(int id, string description, DateTime penalDate, double amountOwed, double amountPaid)
         {
             Id = id;
             Description = description;

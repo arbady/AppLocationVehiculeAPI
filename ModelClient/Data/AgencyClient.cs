@@ -43,7 +43,5 @@ namespace ModelClient.Data
         public string City { get; set; }
         public string Country { get; set; }
         public bool IsClosed { get; set; }
-
-
     }
 }

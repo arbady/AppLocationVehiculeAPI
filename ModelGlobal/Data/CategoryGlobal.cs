@@ -11,6 +11,6 @@ namespace ModelGlobal.Data
     {
         public int Id { get; set; }
         public TypeCat TypeCat { get; set; }
-        public float CostPerDay { get; set; }
+        public double CostPerDay { get; set; }
     }
 }

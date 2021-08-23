@@ -14,45 +14,43 @@ namespace ModelClient.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Sex Sex { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
         public Role Role { get; set; }
-        public string Salt { get; set; }
+        public string Token { get; set; }
 
         public UserClient(){}
 
-        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, Role role, string salt)
+        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime birthDate, DateTime registrationDate, string address, string phone, string email, string password, Role role)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Sex = sex;
-            DateOfBirth = dateOfBirth;
+            BirthDate = birthDate;
             RegistrationDate = registrationDate;
             Address = address;
             Phone = phone;
             Email = email;
             Password = password;
             Role = role;
-            Salt = salt;
         }
-        public UserClient(string firstName, string lastName, Sex sex, DateTime dateOfBirth, DateTime registrationDate, string address, string phone, string email, byte[] password, Role role, string salt)
+        public UserClient(string firstName, string lastName, Sex sex, DateTime birthDate, DateTime registrationDate, string address, string phone, string email, string password, Role role)
         {
             FirstName = firstName;
             LastName = lastName;
             Sex = sex;
-            DateOfBirth = dateOfBirth;
+            BirthDate = birthDate;
             RegistrationDate = registrationDate;
             Address = address;
             Phone = phone;
             Email = email;
             Password = password;
             Role = role;
-            Salt = salt;
         }
     }
 }

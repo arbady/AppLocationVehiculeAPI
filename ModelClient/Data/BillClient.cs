@@ -10,8 +10,8 @@ namespace ModelClient.Data
     public class BillClient : BillGlobal
     {
         public BillClient(){}
-        public BillClient(int billNum, string wording, DateTime billDate, float amountTotHTVA, 
-            float amountTotTVA, bool paid, int contractId, int paymentMethodId)
+        public BillClient(string billNum, string wording, DateTime billDate, double amountTotHTVA, 
+            double amountTotTVA, bool paid, int contractId, int paymentMethodId)
         {
             BillNum = billNum;
             Wording = wording;
@@ -22,8 +22,8 @@ namespace ModelClient.Data
             ContractId = contractId;
             PaymentMethodId = paymentMethodId;
         }
-        public BillClient(int id, int billNum, string wording, DateTime billDate, float amountTotHTVA,
-            float amountTotTVA, bool paid, int contractId, int paymentMethodId)
+        public BillClient(int id, string billNum, string wording, DateTime billDate, double amountTotHTVA,
+            double amountTotTVA, bool paid, int contractId, int paymentMethodId)
         {
             Id = id;
             BillNum = billNum;
