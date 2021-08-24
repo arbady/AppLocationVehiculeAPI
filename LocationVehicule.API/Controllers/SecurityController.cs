@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LocationVehicule.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -17,15 +18,15 @@ using System.Threading.Tasks;
 
 namespace LocationVehicule.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SecurityController : ControllerBase
     {
-        private readonly ISecurity security;
-        private readonly JWSettings jwtSettings;
+        private readonly JWTSettings jwtSettings;
+        private readonly IRepoUser<UserClient> security;
 
-        public SecurityController(ISecurity security, IOptions<JWSettings> jwtSettings)
+        public SecurityController(IOptions<JWTSettings> jwtSettings, IRepoUser<UserClient> security)
         {
             this.security = security;
             this.jwtSettings = jwtSettings.Value;
@@ -46,7 +47,8 @@ namespace LocationVehicule.API.Controllers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.Email)
+                        new Claim(ClaimTypes.Name, user.Email),
+                        new Claim(ClaimTypes.Role, user.Role.ToString())
                     }),
 
                     Expires = DateTime.UtcNow.AddMinutes(10),
@@ -61,13 +63,33 @@ namespace LocationVehicule.API.Controllers
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 user.Token = tokenHandler.WriteToken(token);
 
-                return Ok(user);
+                return Ok(user.Token);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     Method = nameof(Login),
+                    Message = ex.Message
+                });
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("[action]")]
+        public ActionResult<string> Register(UserClient user)
+        {
+            try
+            {
+                int UserId = security.Post(user);
+                
+                return Ok("Le compte utilisateur " + user.Email + " a bien été créé.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Method = nameof(Register),
                     Message = ex.Message
                 });
             }

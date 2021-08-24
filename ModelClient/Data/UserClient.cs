@@ -20,12 +20,15 @@ namespace ModelClient.Data
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string RePassword { get; set; }
         public Role Role { get; set; }
         public string Token { get; set; }
 
         public UserClient(){}
 
-        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime birthDate, DateTime registrationDate, string address, string phone, string email, string password, Role role)
+        public UserClient(int id, string firstName, string lastName, Sex sex, DateTime birthDate, 
+            DateTime registrationDate, string address, string phone, string email, string password, 
+            /*string rePassword*/ Role role)
         {
             Id = id;
             FirstName = firstName;
@@ -37,9 +40,12 @@ namespace ModelClient.Data
             Phone = phone;
             Email = email;
             Password = password;
+            //RePassword = rePassword;
             Role = role;
         }
-        public UserClient(string firstName, string lastName, Sex sex, DateTime birthDate, DateTime registrationDate, string address, string phone, string email, string password, Role role)
+        public UserClient(string firstName, string lastName, Sex sex, DateTime birthDate, 
+            DateTime registrationDate, string address, string phone, string email, string password, 
+            /*string rePassword*/ Role role)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -50,6 +56,7 @@ namespace ModelClient.Data
             Phone = phone;
             Email = email;
             Password = password;
+            //RePassword = rePassword;
             Role = role;
         }
     }

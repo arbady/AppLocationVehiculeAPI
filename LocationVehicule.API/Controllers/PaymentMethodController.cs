@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class PaymentMethodController : ControllerBase
     {
-        private PaymentMethodClientService _paymentService = new PaymentMethodClientService();
+        //private PaymentMethodClientService _paymentService = new PaymentMethodClientService();
+        private readonly IRepoPaymentMethod<PaymentMethodClient> _paymentService;
+        public PaymentMethodController(IRepoPaymentMethod<PaymentMethodClient> paymentService)
+        {
+            _paymentService = paymentService;
+        }
 
         // GET: api/PaymentMethod
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/PaymentMethod/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] PaymentMethodApi payment)
         {
             return _paymentService.Put(id, payment.ToPaymentMethodClient());
         }
 
         // DELETE: api/PaymentMethod/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _paymentService.Delete(id);

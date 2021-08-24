@@ -14,7 +14,6 @@ namespace ModelClient.Services
     public class AgencyClientService : IRepoAgency<AgencyClient>
     {
         private IRepoAgency<AgencyGlobal> _agencyGlobalService;
-
         public AgencyClientService()
         {
             _agencyGlobalService = new AgencyGlobalService();

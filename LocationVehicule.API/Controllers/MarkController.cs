@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class MarkController : ControllerBase
     {
-        private MarkClientService _markService = new MarkClientService();
+        //private MarkClientService _markService = new MarkClientService();
+        private readonly IRepoMark<MarkClient> _markService;
+        public MarkController(IRepoMark<MarkClient> markService)
+        {
+            _markService = markService;
+        }
 
         // GET: api/Mark
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Mark/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] MarkApi mark)
         {
             return _markService.Put(id, mark.ToMarkClient());
         }
 
         // DELETE: api/Mark/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _markService.Delete(id);

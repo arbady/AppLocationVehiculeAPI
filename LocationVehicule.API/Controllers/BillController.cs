@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,13 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class BillController : ControllerBase
     {
-        private BillClientService _billService = new BillClientService();
+        //private BillClientService _billService = new BillClientService();
+        private readonly IRepoBill<BillClient> _billService;
+        public BillController(IRepoBill<BillClient> billService)
+        {
+            _billService = billService;
+        }
+
 
         // GET: api/Bill
         [HttpGet]
@@ -38,14 +46,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Agency/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] BillApi bill)
         {
             return _billService.Put(id, bill.ToBillClient());
         }
 
         // DELETE: api/Bill/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _billService.Delete(id);

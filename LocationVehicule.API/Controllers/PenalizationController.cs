@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class PenalizationController : ControllerBase
     {
-        private PenalizationClientService _penalService = new PenalizationClientService();
+        //private PenalizationClientService _penalService = new PenalizationClientService();
+        private readonly IRepoPenalization<PenalizationClient> _penalService;
+        public PenalizationController(IRepoPenalization<PenalizationClient> penalService)
+        {
+            _penalService = penalService;
+        }
 
         // GET: api/Penalization
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Penalization/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] PenalizationApi penal)
         {
             return _penalService.Put(id, penal.ToPenalizationClient());
         }
 
         // DELETE: api/Penalization/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _penalService.Delete(id);

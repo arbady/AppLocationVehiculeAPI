@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LocationVehicule.API
 {
-    public class JWSettings
+    public class JWTSettings
     {
         public string SecretKey { get; set; }
     }

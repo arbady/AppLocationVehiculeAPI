@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class ModelController : ControllerBase
     {
-        private ModelClientService _modelService = new ModelClientService();
+        //private ModelClientService _modelService = new ModelClientService();
+        private readonly IRepoModel<ModeleClient> _modelService;
+        public ModelController(IRepoModel<ModeleClient> modelService)
+        {
+            _modelService = modelService;
+        }
 
         // GET: api/Model
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Model/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] ModelApi model)
         {
             return _modelService.Put(id, model.ToModelClient());
         }
 
         // DELETE: api/Model/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _modelService.Delete(id);

@@ -3,7 +3,9 @@ using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,14 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class AgencyController : ControllerBase
     {
-        private AgencyClientService _agencyService = new AgencyClientService();
+        //private AgencyClientService _agencyService = new AgencyClientService();
+        private readonly IRepoAgency<AgencyClient> _agencyService;
+
+        public AgencyController(IRepoAgency<AgencyClient> agencyService)
+        {
+            _agencyService = agencyService;
+        }
+
 
         // GET: api/Agency
         [HttpGet]

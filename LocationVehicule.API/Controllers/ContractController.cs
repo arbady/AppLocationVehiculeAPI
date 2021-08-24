@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class ContractController : ControllerBase
     {
-        private ContractClientService _contractService = new ContractClientService();
+        //private ContractClientService _contractService = new ContractClientService();
+        private readonly IRepoContract<ContractClient> _contractService;
+        public ContractController(IRepoContract<ContractClient> contractClient)
+        {
+            _contractService = contractClient;
+        }
 
         // GET: api/Contract
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Contract/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] ContractApi contract)
         {
             return _contractService.Put(id, contract.ToContractClient());
         }
 
         // DELETE: api/Contract/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _contractService.Delete(id);

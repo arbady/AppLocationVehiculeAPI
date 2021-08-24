@@ -8,6 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ModelClient.Data;
+using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,15 +33,31 @@ namespace LocationVehicule.API
         {
 
             services.AddControllers();
+
+            services.AddScoped<IRepoAgency<AgencyClient>, AgencyClientService>();
+            services.AddScoped<IRepoBill<BillClient>, BillClientService>();
+            services.AddScoped<IRepoCategory<CategoryClient>, CategoryClientService>();
+            services.AddScoped<IRepoContract<ContractClient>, ContractClientService>();
+            services.AddScoped<IRepoDisponibilities<DisponibilitiesClient>, DisponibilitiesClientService>();
+            services.AddScoped<IRepoLicence<LicenceClient>, LicenceClientService>();
+            services.AddScoped<IRepoMark<MarkClient>, MarkClientService>();
+            services.AddScoped<IRepoModel<ModeleClient>, ModelClientService>();
+            services.AddScoped<IRepoPaymentMethod<PaymentMethodClient>, PaymentMethodClientService>();
+            services.AddScoped<IRepoPenalization<PenalizationClient>, PenalizationClientService>();
+            services.AddScoped<IRepoReservation<ReservationClient>, ReservationClientService>();
+            services.AddScoped<IRepoState<StateClient>, StateClientService>();
+            services.AddScoped<IRepoUser<UserClient>, UserClientService>();
+            services.AddScoped<IRepoVehicle<VehicleClient>, VehicleClientService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LocationVehicule.API", Version = "v1" });
             });
 
             IConfigurationSection jwtSection = Configuration.GetSection("JWTSettings");
-            services.Configure<JWSettings>(jwtSection);
+            services.Configure<JWTSettings>(jwtSection);
 
-            var appSettings = jwtSection.Get<JWSettings>();
+            var appSettings = jwtSection.Get<JWTSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
 
             services.AddAuthentication(

@@ -20,6 +20,11 @@ namespace ModelClient.Services
             _userService = new UserGlobalService();
         }
 
+        public UserClient Check(string mail, string password)
+        {
+            return _userService.Check(mail, password).ToUserClient();
+        }
+
         public bool Delete(int id)
         {
             return _userService.Delete(id);

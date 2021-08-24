@@ -12,6 +12,14 @@ namespace ModelGlobal.Services
 {
     public class UserGlobalService : BaseService, IRepoUser<UserGlobal>
     {
+        public UserGlobal Check(string mail, string password)
+        {
+            Command command = new Command(
+                "SELECT * FROM [User] WHERE email=@email AND password=dbo.SF_HashingPassword(@password, Salt)"); //A voir
+            command.AddParameter("email", mail);
+            command.AddParameter("password", password);
+            return _connection.ExecuteReader(command, u => u.ToUser()).SingleOrDefault();
+        }
         public bool Delete(int id)
         {
             Command command = new Command("Delete FROM User WHERE Id=@Id");
@@ -54,9 +62,9 @@ namespace ModelGlobal.Services
         public bool Put(int id, UserGlobal user)
         {
             Command command = new Command
-                ("UPDATE User Set FirstName=@FirstName, LastName=@LastName, Sex=@Sex, DateOfBirth=@DateOfBirth, " +
-                "Email=@Email, [Password]=dbo.SF_HashingPassword(@[Password], Salt), " +
-                "RegistrationDate=@RegistrationDate, [Address]=@Address, Phone=@Phone, [Role]=@Role " +
+                ("UPDATE User Set FirstName=@firstName, lastName=@LastName, Sex=@sex, BirthDate=@birthDate, " +
+                "Email=@email, [Password]=dbo.SF_HashingPassword(@[Password], Salt), " +
+                "RegistrationDate=@registrationDate, [Address]=@address, Phone=@phone, [Role]=@role " +
                 "WHERE id=@id");
 
             command.AddParameter("FirstName", user.FirstName);

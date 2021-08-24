@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public interface IRepoUser<TUser>
+    public interface IRepoUser<TUser> : ISecurity<TUser>
     {
         IEnumerable<TUser> Get();
         TUser Get(int id);

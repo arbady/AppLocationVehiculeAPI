@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private CategoryClientService _categoryService = new CategoryClientService();
+        //private CategoryClientService _categoryService = new CategoryClientService();
+        private readonly IRepoCategory<CategoryClient> _categoryService;
+        public CategoryController(IRepoCategory<CategoryClient> categoryService)
+        {
+            _categoryService = categoryService;
+        }
 
         // GET: api/Category
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Category/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] CategoryApi category)
         {
             return _categoryService.Put(id, category.ToCategoryClient());
         }
 
         // DELETE: api/Category/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _categoryService.Delete(id);

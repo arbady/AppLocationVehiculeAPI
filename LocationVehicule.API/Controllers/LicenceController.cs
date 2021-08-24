@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class LicenceController : ControllerBase
     {
-        private LicenceClientService _licenceService = new LicenceClientService();
+        //private LicenceClientService _licenceService = new LicenceClientService();
+        private readonly IRepoLicence<LicenceClient> _licenceService;
+        public LicenceController(IRepoLicence<LicenceClient> licenceService)
+        {
+            _licenceService = licenceService;
+        }
 
         // GET: api/Licence
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Licence/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] LicenceApi licence)
         {
             return _licenceService.Put(id, licence.ToLicenceClient());
         }
 
         // DELETE: api/Licence/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _licenceService.Delete(id);

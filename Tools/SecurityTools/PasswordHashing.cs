@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tools.SecurityTools
 {
-    public class PasswordHasher
+    public class PasswordHashing
     {
         public static byte[] Hashing<T>(T userModel, string password, Func<T, string> saltSelector)
         {

@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class DisponibilitiesController : ControllerBase
     {
-        private DisponibilitiesClientService _disponibilitiesService = new DisponibilitiesClientService();
+        //private DisponibilitiesClientService _disponibilitiesService = new DisponibilitiesClientService();
+        private readonly IRepoDisponibilities<DisponibilitiesClient> _disponibilitiesService;
+        public DisponibilitiesController(IRepoDisponibilities<DisponibilitiesClient> disponibilitiesService)
+        {
+            _disponibilitiesService = disponibilitiesService;
+        }
 
         // GET: api/Disponibilities
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/Disponibilities/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] DisponibilitiesApi disponibilities)
         {
             return _disponibilitiesService.Put(id, disponibilities.ToDisponibilitiesClient());
         }
 
         // DELETE: api/Disponibilities/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _disponibilitiesService.Delete(id);

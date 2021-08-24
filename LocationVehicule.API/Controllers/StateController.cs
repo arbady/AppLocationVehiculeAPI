@@ -2,7 +2,9 @@
 using LocationVehicule.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ModelClient.Data;
 using ModelClient.Services;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class StateController : ControllerBase
     {
-        private StateClientService _stateService = new StateClientService();
+        //private StateClientService _stateService = new StateClientService();
+        private readonly IRepoState<StateClient> _stateService;
+        public StateController(IRepoState<StateClient> stateService)
+        {
+            _stateService = stateService;
+        }
 
         // GET: api/State
         [HttpGet]
@@ -38,14 +45,14 @@ namespace LocationVehicule.API.Controllers
         }
 
         // PUT: api/State/5
-        [HttpPut]
+        [HttpPut("{id:int}")]
         public bool Put(int id, [FromBody] StateApi state)
         {
             return _stateService.Put(id, state.ToStateClient());
         }
 
         // DELETE: api/State/3
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public bool Delete(int id)
         {
             return _stateService.Delete(id);

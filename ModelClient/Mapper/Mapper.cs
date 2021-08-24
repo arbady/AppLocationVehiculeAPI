@@ -271,14 +271,14 @@ namespace ModelClient.Mapper
                 RegistrationDate = user.RegistrationDate,
                 Address = user.Address,
                 Phone = user.Phone,
-                Role = user.Role,
+                Role = user.Role
             };
         }
         internal static UserClient ToUserClient(this UserGlobal user)
         {
             return new UserClient(
                 user.Id, user.FirstName, user.LastName, user.Sex, user.BirthDate, user.RegistrationDate, 
-                user.Address, user.Phone, user.Email, user.Password, user.Role);
+                user.Address, user.Phone, user.Email, user.Password, /*user.RePassword*/ user.Role);
         }
         #endregion
 

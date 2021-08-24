@@ -174,18 +174,18 @@ namespace LocationVehicule.API.Mapper
 
         //A revoir par rapport au token et salt
         #region User
-        //public static UserApi ToUserApi(this UserClient user)
-        //{
-        //    return new UserApi(
-        //        user.Id, user.FirstName, user.LastName, user.Sex, user.DateOfBirth, user.RegistrationDate,
-        //        user.Address, user.Phone, user.Email, user.Password, user.Role, user.Token);
-        //}
-        //public static UserClient ToUserClient(this UserApi user)
-        //{
-        //    return new UserClient(
-        //        user.Id, user.FirstName, user.LastName, user.Sex, user.DateOfBirth, user.RegistrationDate,
-        //        user.Address, user.Phone, user.Email, user.Password, user.Role, user.Token);
-        //}
+        public static UserApi ToUserApi(this UserClient user)
+        {
+            return new UserApi(
+                user.Id, user.FirstName, user.LastName, user.Sex, user.BirthDate, user.RegistrationDate,
+                user.Address, user.Phone, user.Email, user.Password, user.Role);
+        }
+        public static UserClient ToUserClient(this UserApi user)
+        {
+            return new UserClient(
+                user.Id, user.FirstName, user.LastName, user.Sex, user.BirthDate, user.RegistrationDate,
+                user.Address, user.Phone, user.Email, user.Password, user.Role);
+        }
         #endregion
 
         #region Vehicle

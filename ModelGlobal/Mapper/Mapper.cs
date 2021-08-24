@@ -210,6 +210,7 @@ namespace ModelGlobal.Mapper
                 BirthDate = (DateTime)reader[nameof(UserGlobal.BirthDate)],
                 Email = (string)reader[nameof(UserGlobal.Email)],
                 Password = "********",
+                //RePassword = (string)reader[nameof(UserGlobal.Password)],
                 RegistrationDate = (DateTime)reader[nameof(UserGlobal.RegistrationDate)],
                 Address = (string)reader[nameof(UserGlobal.Address)],
                 Phone = (string)reader[nameof(UserGlobal.Phone)],
