@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Category
         [HttpGet]
-        public IEnumerable<CategoryApi> Get()
+        public IEnumerable<CategoryClient> Get()
         {
-            return _categoryService.Get().Select(c => c.ToCategoryApi());
+            return _categoryService.Get();
         }
 
         // GET: api/Category/3
         [HttpGet("{id:int}")]
-        public CategoryApi Get(int id)
+        public CategoryClient Get(int id)
         {
-            return _categoryService.Get(id).ToCategoryApi();
+            return _categoryService.Get(id);
         }
 
         // POST: api/Category
         [HttpPost]
-        public int Post([FromBody] CategoryApi category)
+        public int Post([FromBody] CategoryClient category)
         {
-            return _categoryService.Post(category.ToCategoryClient());
+            return _categoryService.Post(category);
         }
 
         // PUT: api/Category/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] CategoryApi category)
+        public bool Put(int id, [FromBody] CategoryClient category)
         {
-            return _categoryService.Put(id, category.ToCategoryClient());
+            return _categoryService.Put(id, category);
         }
 
         // DELETE: api/Category/3

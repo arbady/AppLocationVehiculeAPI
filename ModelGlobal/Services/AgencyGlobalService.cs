@@ -12,32 +12,24 @@ namespace ModelGlobal.Services
 {
     public class AgencyGlobalService : BaseService, IRepoAgency<AgencyGlobal>
     {
-        //private Connection _connection;
-        //private string _conStr = @"Data Source=LAPTOP-VIA3UD35;Initial Catalog=AppLocationVehicule;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-        //public AgencyGlobalService()
-        //{
-        //    _connection = new Connection(_conStr);
-        //}
-
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Agency WHERE Id=@Id");
-            //Command command = new Command(isStoredProcedure);
+            //Command command = new Command("Delete FROM Agency WHERE Id=@Id");
+            Command command = new Command("SP_DeleteAgency", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<AgencyGlobal> Get()
         {
-            Command command = new Command("Select * FROM Agency");
+            Command command = new Command("SP_GetAllAgency", true);
             //chaque ligne du reader est convertie au format agencyGlobal
             return _connection.ExecuteReader(command, a => a.ToAgency());
         }
 
         public AgencyGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Agency WHERE id=@id");
+            Command command = new Command("SP_GetByIdAgency", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, a => a.ToAgency()).SingleOrDefault();
@@ -45,10 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(AgencyGlobal agency)
         {
-            Command command = new Command
-                ("INSERT INTO Agency (Code, Airport, [Address], ZipCode, City, Country, IsClosed) " +
-                "output inserted.id VALUES " +
-                "(@Code, @Airport, @Address, @ZipCode, @City, @Country, @IsClosed);");
+            Command command = new Command("SP_InsertAgency", true);
             command.AddParameter("Code", agency.Code);
             command.AddParameter("Airport", agency.Airport);
             command.AddParameter("Address", agency.Address);
@@ -62,9 +51,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, AgencyGlobal agency)
         {
-            Command command = new Command
-                ("UPDATE Agency Set Code=@Code, Airport=@Airport, [Address]=@Address, ZipCode=@ZipCode, " +
-                "City=@City, Country=@Country, IsClosed=@IsClosed WHERE id=@id");
+            Command command = new Command("SP_UpdateAgency", true);
             command.AddParameter("Code", agency.Code);
             command.AddParameter("Airport", agency.Airport);
             command.AddParameter("Address", agency.Address);

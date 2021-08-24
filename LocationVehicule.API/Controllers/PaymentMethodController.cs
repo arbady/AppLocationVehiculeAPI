@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/PaymentMethod
         [HttpGet]
-        public IEnumerable<PaymentMethodApi> Get()
+        public IEnumerable<PaymentMethodClient> Get()
         {
-            return _paymentService.Get().Select(p => p.ToPaymentMethodApi());
+            return _paymentService.Get();
         }
 
         // GET: api/PaymentMethod/3
         [HttpGet("{id:int}")]
-        public PaymentMethodApi Get(int id)
+        public PaymentMethodClient Get(int id)
         {
-            return _paymentService.Get(id).ToPaymentMethodApi();
+            return _paymentService.Get(id);
         }
 
         // POST: api/PaymentMethod
         [HttpPost]
-        public int Post([FromBody] PaymentMethodApi payment)
+        public int Post([FromBody] PaymentMethodClient payment)
         {
-            return _paymentService.Post(payment.ToPaymentMethodClient());
+            return _paymentService.Post(payment);
         }
 
         // PUT: api/PaymentMethod/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] PaymentMethodApi payment)
+        public bool Put(int id, [FromBody] PaymentMethodClient payment)
         {
-            return _paymentService.Put(id, payment.ToPaymentMethodClient());
+            return _paymentService.Put(id, payment);
         }
 
         // DELETE: api/PaymentMethod/3

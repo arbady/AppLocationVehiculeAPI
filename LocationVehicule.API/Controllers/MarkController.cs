@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Mark
         [HttpGet]
-        public IEnumerable<MarkApi> Get()
+        public IEnumerable<MarkClient> Get()
         {
-            return _markService.Get().Select(m => m.ToMarkApi());
+            return _markService.Get();
         }
 
         // GET: api/Mark/3
         [HttpGet("{id:int}")]
-        public MarkApi Get(int id)
+        public MarkClient Get(int id)
         {
-            return _markService.Get(id).ToMarkApi();
+            return _markService.Get(id);
         }
 
         // POST: api/Mark
         [HttpPost]
-        public int Post([FromBody] MarkApi mark)
+        public int Post([FromBody] MarkClient mark)
         {
-            return _markService.Post(mark.ToMarkClient());
+            return _markService.Post(mark);
         }
 
         // PUT: api/Mark/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] MarkApi mark)
+        public bool Put(int id, [FromBody] MarkClient mark)
         {
-            return _markService.Put(id, mark.ToMarkClient());
+            return _markService.Put(id, mark);
         }
 
         // DELETE: api/Mark/3

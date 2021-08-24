@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_GetAllState]
+	
+AS
+	SELECT * FROM [State]
+RETURN 0

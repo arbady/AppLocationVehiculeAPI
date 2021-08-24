@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_GetAllMark]
+	
+AS
+	SELECT * FROM Mark
+RETURN 0

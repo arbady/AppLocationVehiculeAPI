@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_GetAllBill]
+	
+AS
+	SELECT * FROM Bill
+RETURN 0

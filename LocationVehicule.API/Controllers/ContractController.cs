@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Contract
         [HttpGet]
-        public IEnumerable<ContractApi> Get()
+        public IEnumerable<ContractClient> Get()
         {
-            return _contractService.Get().Select(c => c.ToContractApi());
+            return _contractService.Get();
         }
 
         // GET: api/Contract/3
         [HttpGet("{id:int}")]
-        public ContractApi Get(int id)
+        public ContractClient Get(int id)
         {
-            return _contractService.Get(id).ToContractApi();
+            return _contractService.Get(id);
         }
 
         // POST: api/Contract
         [HttpPost]
-        public int Post([FromBody] ContractApi contract)
+        public int Post([FromBody] ContractClient contract)
         {
-            return _contractService.Post(contract.ToContractClient());
+            return _contractService.Post(contract);
         }
 
         // PUT: api/Contract/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] ContractApi contract)
+        public bool Put(int id, [FromBody] ContractClient contract)
         {
-            return _contractService.Put(id, contract.ToContractClient());
+            return _contractService.Put(id, contract);
         }
 
         // DELETE: api/Contract/3

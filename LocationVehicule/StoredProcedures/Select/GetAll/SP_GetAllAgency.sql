@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[SP_GetAllAgency]
+	
+AS
+	SELECT * FROM Agency
+RETURN 0

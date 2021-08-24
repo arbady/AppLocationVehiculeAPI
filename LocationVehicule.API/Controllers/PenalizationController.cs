@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Penalization
         [HttpGet]
-        public IEnumerable<PenalizationApi> Get()
+        public IEnumerable<PenalizationClient> Get()
         {
-            return _penalService.Get().Select(p => p.ToPenalizationApi());
+            return _penalService.Get();
         }
 
         // GET: api/Penalization/3
         [HttpGet("{id:int}")]
-        public PenalizationApi Get(int id)
+        public PenalizationClient Get(int id)
         {
-            return _penalService.Get(id).ToPenalizationApi();
+            return _penalService.Get(id);
         }
 
         // POST: api/Penalization
         [HttpPost]
-        public int Post([FromBody] PenalizationApi penal)
+        public int Post([FromBody] PenalizationClient penal)
         {
-            return _penalService.Post(penal.ToPenalizationClient());
+            return _penalService.Post(penal);
         }
 
         // PUT: api/Penalization/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] PenalizationApi penal)
+        public bool Put(int id, [FromBody] PenalizationClient penal)
         {
-            return _penalService.Put(id, penal.ToPenalizationClient());
+            return _penalService.Put(id, penal);
         }
 
         // DELETE: api/Penalization/3

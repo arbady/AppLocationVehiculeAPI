@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Disponibilities
         [HttpGet]
-        public IEnumerable<DisponibilitiesApi> Get()
+        public IEnumerable<DisponibilitiesClient> Get()
         {
-            return _disponibilitiesService.Get().Select(d => d.ToDisponibilitiesApi());
+            return _disponibilitiesService.Get();
         }
 
         // GET: api/Disponibilities/3
         [HttpGet("{id:int}")]
-        public DisponibilitiesApi Get(int id)
+        public DisponibilitiesClient Get(int id)
         {
-            return _disponibilitiesService.Get(id).ToDisponibilitiesApi();
+            return _disponibilitiesService.Get(id);
         }
 
         // POST: api/Disponibilities
         [HttpPost]
-        public int Post([FromBody] DisponibilitiesApi disponibilities)
+        public int Post([FromBody] DisponibilitiesClient disponibilities)
         {
-            return _disponibilitiesService.Post(disponibilities.ToDisponibilitiesClient());
+            return _disponibilitiesService.Post(disponibilities);
         }
 
         // PUT: api/Disponibilities/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] DisponibilitiesApi disponibilities)
+        public bool Put(int id, [FromBody] DisponibilitiesClient disponibilities)
         {
-            return _disponibilitiesService.Put(id, disponibilities.ToDisponibilitiesClient());
+            return _disponibilitiesService.Put(id, disponibilities);
         }
 
         // DELETE: api/Disponibilities/3

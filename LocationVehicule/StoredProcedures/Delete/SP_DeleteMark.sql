@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].[SP_DeleteMark]
+	@Id INT
+AS
+	BEGIN
+		DELETE FROM Mark WHERE Id = @Id
+	END

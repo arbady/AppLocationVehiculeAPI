@@ -8,9 +8,9 @@ namespace Tools
 {
     public class Command
     {
-        private Dictionary<string, object> _params;
-        private bool _stored;
-        private string _query;
+        private readonly Dictionary<string, object> _params;
+        private readonly bool _stored;
+        private readonly string _query;
 
         public Command(string query, bool isStoredProcedure = false)
         {

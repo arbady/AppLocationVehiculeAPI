@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -28,30 +26,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<UserApi> Get()
+        public IEnumerable<UserClient> Get()
         {
-            return _userService.Get().Select(u => u.ToUserApi());
+            return _userService.Get();
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public UserApi Get(int id)
+        public UserClient Get(int id)
         {
-            return _userService.Get(id).ToUserApi();
+            return _userService.Get(id);
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public int Post([FromBody] UserApi user)
+        public int Post([FromBody] UserClient user)
         {
-            return _userService.Post(user.ToUserApi());
+            return _userService.Post(user);
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public bool Put(int id, [FromBody] UserApi user)
+        public bool Put(int id, [FromBody] UserClient user)
         {
-            return _userService.Put(id, user.ToUserApi());
+            return _userService.Put(id, user);
         }
 
         // DELETE api/<UserController>/5

@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].[SP_DeleteModel]
+	@Id INT
+AS
+	BEGIN
+		DELETE FROM Model WHERE Id = @Id
+	END

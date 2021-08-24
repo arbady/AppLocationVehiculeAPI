@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Vehicle
         [HttpGet]
-        public IEnumerable<VehicleApi> Get()
+        public IEnumerable<VehicleClient> Get()
         {
-            return _vehicleService.Get().Select(v => v.ToVehicleApi());
+            return _vehicleService.Get();
         }
 
         // GET: api/Vehicle/3
         [HttpGet("{id:int}")]
-        public VehicleApi Get(int id)
+        public VehicleClient Get(int id)
         {
-            return _vehicleService.Get(id).ToVehicleApi();
+            return _vehicleService.Get(id);
         }
 
         // POST: api/Vehicle
         [HttpPost]
-        public int Post([FromBody] VehicleApi vehicle)
+        public int Post([FromBody] VehicleClient vehicle)
         {
-            return _vehicleService.Post(vehicle.ToVehicleClient());
+            return _vehicleService.Post(vehicle);
         }
 
         // PUT: api/Vehicle/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] VehicleApi vehicle)
+        public bool Put(int id, [FromBody] VehicleClient vehicle)
         {
-            return _vehicleService.Put(id, vehicle.ToVehicleClient());
+            return _vehicleService.Put(id, vehicle);
         }
 
         // DELETE: api/Vehicle/3

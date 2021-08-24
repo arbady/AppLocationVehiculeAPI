@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -25,30 +23,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Licence
         [HttpGet]
-        public IEnumerable<LicenceApi> Get()
+        public IEnumerable<LicenceClient> Get()
         {
-            return _licenceService.Get().Select(l => l.ToLicenceApi());
+            return _licenceService.Get();
         }
 
         // GET: api/Licence/3
         [HttpGet("{id:int}")]
-        public LicenceApi Get(int id)
+        public LicenceClient Get(int id)
         {
-            return _licenceService.Get(id).ToLicenceApi();
+            return _licenceService.Get(id);
         }
 
         // POST: api/Licence
         [HttpPost]
-        public int Post([FromBody] LicenceApi licence)
+        public int Post([FromBody] LicenceClient licence)
         {
-            return _licenceService.Post(licence.ToLicenceClient());
+            return _licenceService.Post(licence);
         }
 
         // PUT: api/Licence/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] LicenceApi licence)
+        public bool Put(int id, [FromBody] LicenceClient licence)
         {
-            return _licenceService.Put(id, licence.ToLicenceClient());
+            return _licenceService.Put(id, licence);
         }
 
         // DELETE: api/Licence/3

@@ -1,6 +1,4 @@
-﻿using LocationVehicule.API.Mapper;
-using LocationVehicule.API.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -26,30 +24,30 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Bill
         [HttpGet]
-        public IEnumerable<BillApi> Get()
+        public IEnumerable<BillClient> Get()
         {
-            return _billService.Get().Select(b => b.ToBillApi());
+            return _billService.Get();
         }
 
         // GET: api/Bill/3
         [HttpGet("{id:int}")]
-        public BillApi Get(int id)
+        public BillClient Get(int id)
         {
-            return _billService.Get(id).ToBillApi();
+            return _billService.Get(id);
         }
 
         // POST: api/Bill
         [HttpPost]
-        public int Post([FromBody] BillApi bill)
+        public int Post([FromBody] BillClient bill)
         {
-            return _billService.Post(bill.ToBillClient());
+            return _billService.Post(bill);
         }
 
         // PUT: api/Agency/5
         [HttpPut("{id:int}")]
-        public bool Put(int id, [FromBody] BillApi bill)
+        public bool Put(int id, [FromBody] BillClient bill)
         {
-            return _billService.Put(id, bill.ToBillClient());
+            return _billService.Put(id, bill);
         }
 
         // DELETE: api/Bill/3
