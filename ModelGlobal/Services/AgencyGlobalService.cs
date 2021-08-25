@@ -23,6 +23,7 @@ namespace ModelGlobal.Services
 
         public IEnumerable<AgencyGlobal> Get()
         {
+            //Command command = new Command("SELECT * FROM Agency");
             Command command = new Command("SP_GetAllAgency", true);
             //chaque ligne du reader est convertie au format agencyGlobal
             return _connection.ExecuteReader(command, a => a.ToAgency());
