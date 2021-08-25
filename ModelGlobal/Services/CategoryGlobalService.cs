@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Category WHERE Id=@Id");
+            Command command = new Command("SP_DeleteCategory", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<CategoryGlobal> Get()
         {
-            Command command = new Command("Select * FROM Category");
+            Command command = new Command("SP_GetAllCategory", true);
             //chaque ligne du reader est convertie au format Category
             return _connection.ExecuteReader(command, c => c.ToCategory());
         }
 
         public CategoryGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Category WHERE id=@id");
+            Command command = new Command("SP_GetByIdCategory", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, c => c.ToCategory()).SingleOrDefault();
@@ -36,8 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(CategoryGlobal category)
         {
-            Command command = new Command
-                ("INSERT INTO Category (TypeCat, CostPerDay) output inserted.id VALUES (@TypeCat, @CostPerDay);");
+            Command command = new Command("SP_InsertCategory", true);
 
             command.AddParameter("TypeCat", category.TypeCat);
             command.AddParameter("CostPerDay", category.CostPerDay);
@@ -47,8 +47,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, CategoryGlobal category)
         {
-            Command command = new Command
-                ("UPDATE Category Set TypeCat=@TypeCat, CostPerDay=@CostPerDay WHERE id=@id");
+            Command command = new Command("SP_UpdateCategory", true);
 
             command.AddParameter("TypeCat", category.TypeCat);
             command.AddParameter("CostPerDay", category.CostPerDay);

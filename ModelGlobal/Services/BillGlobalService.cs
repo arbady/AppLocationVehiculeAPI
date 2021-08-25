@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,21 +16,21 @@ namespace ModelGlobal.Services
 
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Bill WHERE Id=@Id");
+            Command command = new Command("SP_DeleteBill", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<BillGlobal> Get()
         {
-            Command command = new Command("Select * FROM Bill");
+            Command command = new Command("SP_GetAllBill", true);
             //chaque ligne du reader est convertie au format Bill
             return _connection.ExecuteReader(command, b => b.ToBill());
         }
 
         public BillGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Bill WHERE id=@id");
+            Command command = new Command("SP_GetByIdBill", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, b => b.ToBill()).SingleOrDefault();
@@ -37,10 +38,7 @@ namespace ModelGlobal.Services
 
         public int Post(BillGlobal bill)
         {
-            Command command = new Command
-                ("INSERT INTO Bill (BillNum, Wording, BillDate, AmountTotHTVA, AmountTotTVA, Paid, ContractId, PaymentMethodId) " +
-                "output inserted.id VALUES " +
-                "(@BillNum, @Wording, @BillDate, @AmountTotHTVA, @AmountTotTVA, @Paid, @ContractId, @PaymentMethodId);");
+            Command command = new Command("SP_InsertBill", true);
             command.AddParameter("BillNum", bill.BillNum);
             command.AddParameter("Wording", bill.Wording);
             command.AddParameter("BillDate", bill.BillDate);
@@ -55,10 +53,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, BillGlobal bill)
         {
-            Command command = new Command
-                ("UPDATE Bill Set BillNum=@BillNum, Wording=@Wording, BillDate=@BillDate, " +
-                "AmountTotHTVA=@AmountTotHTVA, AmountTotTVA=@AmountTotTVA, Paid=@Paid, ContractId=@ContractId, " +
-                "PaymentMethodId=@PaymentMethodId WHERE id=@id");
+            Command command = new Command("SP_UpdateBill", true);
             command.AddParameter("BillNum", bill.BillNum);
             command.AddParameter("Wording", bill.Wording);
             command.AddParameter("BillDate", bill.BillDate);

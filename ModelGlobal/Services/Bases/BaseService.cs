@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tools;
 
-namespace ModelGlobal.Services
+namespace ModelGlobal.Services.Bases
 {
     public abstract class BaseService
     {

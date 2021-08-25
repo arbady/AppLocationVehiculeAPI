@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Penalization WHERE Id=@Id");
+            Command command = new Command("SP_DeletePenal", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<PenalizationGlobal> Get()
         {
-            Command command = new Command("Select * FROM Penalization");
+            Command command = new Command("SP_GetAllPenal", true);
             //chaque ligne du reader est convertie au format PenalizationGlobal
             return _connection.ExecuteReader(command, p => p.ToPenalization());
         }
 
         public PenalizationGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Penalization WHERE id=@id");
+            Command command = new Command("SP_GetByIdPenal", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, p => p.ToPenalization()).SingleOrDefault();
@@ -36,9 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(PenalizationGlobal penalization)
         {
-            Command command = new Command
-                ("INSERT INTO Penalization (PenalDate, AmountOwed, AmountPaid) output inserted.id VALUES " +
-                "(@PenalDate, @AmountOwed, @AmountPaid);");
+            Command command = new Command("SP_InsertPenal", true);
 
             command.AddParameter("PenalDate", penalization.PenalDate);
             command.AddParameter("AmountOwed", penalization.AmountOwed);
@@ -49,9 +48,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, PenalizationGlobal penalization)
         {
-            Command command = new Command
-                ("UPDATE Penalization Set PenalDate=@PenalDate, AmountOwed=@AmountOwed, " +
-                "AmountPaid=@AmountPaid WHERE id=@id");
+            Command command = new Command("SP_UpdatePenal", true);
 
             command.AddParameter("PenalDate", penalization.PenalDate);
             command.AddParameter("AmountOwed", penalization.AmountOwed);

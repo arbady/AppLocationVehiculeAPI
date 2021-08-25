@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,21 +23,21 @@ namespace ModelGlobal.Services
         }
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM User WHERE Id=@Id");
+            Command command = new Command("SP_DeleteUser", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<UserGlobal> Get()
         {
-            Command command = new Command("Select * FROM User");
+            Command command = new Command("SP_GetAllUser", true);
             //chaque ligne du reader est convertie au format user
             return _connection.ExecuteReader(command, u => u.ToUser());
         }
 
         public UserGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM User WHERE id=@id");
+            Command command = new Command("SP_GetByIdUser", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, u => u.ToUser()).SingleOrDefault();
@@ -61,11 +62,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, UserGlobal user)
         {
-            Command command = new Command
-                ("UPDATE User Set FirstName=@firstName, lastName=@LastName, Sex=@sex, BirthDate=@birthDate, " +
-                "Email=@email, [Password]=dbo.SF_HashingPassword(@[Password], Salt), " +
-                "RegistrationDate=@registrationDate, [Address]=@address, Phone=@phone, [Role]=@role " +
-                "WHERE id=@id");
+            Command command = new Command("SP_UpdateUser", true);
 
             command.AddParameter("FirstName", user.FirstName);
             command.AddParameter("LastName", user.LastName);

@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Contract WHERE Id=@Id");
+            Command command = new Command("SP_DeleteContract", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<ContractGlobal> Get()
         {
-            Command command = new Command("Select * FROM Contract");
+            Command command = new Command("SP_GetAllContract", true);
             //chaque ligne du reader est convertie au format contract
             return _connection.ExecuteReader(command, c => c.ToContract());
         }
 
         public ContractGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Contract WHERE id=@id");
+            Command command = new Command("SP_GetByIdContract", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, c => c.ToContract()).SingleOrDefault();
@@ -36,11 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(ContractGlobal contract)
         {
-            Command command = new Command
-                ("INSERT INTO Contract (ContractNum, RealReturnDate, ContractDate, AmountTotHTVA, " +
-                "AmountTotTVA, Signed, ReservationId, VehicleId, PenalizationId) " +
-                "output inserted.id VALUES (@ContractNum, @RealReturnDate, @ContractDate, @AmountTotHTVA, " +
-                "@AmountTotTVA, @Signed, @ReservationId, @VehicleId, @PenalizationId);");
+            Command command = new Command("SP_InsertContract", true);
 
             command.AddParameter("ContractNum", contract.ContractNum);
             command.AddParameter("RealReturnDate", contract.RealReturnDate);
@@ -57,11 +54,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, ContractGlobal contract)
         {
-            Command command = new Command
-                ("UPDATE Contract Set ContractNum=@ContractNum, RealReturnDate=@RealReturnDate, " +
-                "ContractDate=@ContractDate, AmountTotHTVA=@AmountTotHTVA, AmountTotTVA=@AmountTotTVA, " +
-                "Signed=@Signed, ReservationId=@ReservationId, VehicleId=@VehicleId, PenalizationId=@PenalizationId " +
-                "WHERE id=@id");
+            Command command = new Command("SP_UpdateContract", true);
 
             command.AddParameter("ContractNum", contract.ContractNum);
             command.AddParameter("RealReturnDate", contract.RealReturnDate);

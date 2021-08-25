@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Vehicle WHERE Id=@Id");
+            Command command = new Command("SP_DeleteVehicle", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<VehicleGlobal> Get()
         {
-            Command command = new Command("Select * FROM Vehicle");
+            Command command = new Command("SP_GetAllVehicle", true);
             //chaque ligne du reader est convertie au format vehicle
             return _connection.ExecuteReader(command, v => v.ToVehicle());
         }
 
         public VehicleGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Vehicle WHERE id=@id");
+            Command command = new Command("SP_GetByIdVehicle", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, v => v.ToVehicle()).SingleOrDefault();
@@ -36,10 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(VehicleGlobal vehicule)
         {
-            Command command = new Command
-                ("INSERT INTO Vehicle (RegistrationNum, NbPlace, NbDoor, Fuel, AirCo, Gps, StateId, ModelId, " +
-                "CategoryId) output inserted.id VALUES " +
-                "(@RegistrationNum, @NbPlace, @NbDoor, @Fuel, @AirCo, @Gps, @StateId, @ModelId, @CategoryId);");
+            Command command = new Command("SP_InsertVehicle", true);
             
             command.AddParameter("RegistrationNum", vehicule.RegistrationNum);
             command.AddParameter("NbPlace", vehicule.NbPlace);
@@ -56,10 +54,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, VehicleGlobal vehicule)
         {
-            Command command = new Command
-                ("UPDATE Vehicle Set RegistrationNum=@RegistrationNum, NbPlace=@NbPlace, NbDoor=@NbDoor, " +
-                "Fuel=@Fuel, AirCo=@AirCo, Gps=@Gps, StateId=@StateId, ModelId=@ModelId, CategoryId=@CategoryId" +
-                " WHERE id=@id");
+            Command command = new Command("SP_UpdateVehicle", true);
             
             command.AddParameter("RegistrationNum", vehicule.RegistrationNum);
             command.AddParameter("NbPlace", vehicule.NbPlace);

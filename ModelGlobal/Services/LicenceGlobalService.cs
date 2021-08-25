@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Licence WHERE Id=@Id");
+            Command command = new Command("SP_DeleteLicence", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<LicenceGlobal> Get()
         {
-            Command command = new Command("Select * FROM Licence");
+            Command command = new Command("SP_GetAllLicence", true);
             //chaque ligne du reader est convertie au format Licence
             return _connection.ExecuteReader(command, l => l.ToLicence());
         }
 
         public LicenceGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Licence WHERE id=@id");
+            Command command = new Command("SP_GetByIdLicence", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, l => l.ToLicence()).SingleOrDefault();
@@ -36,9 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(LicenceGlobal licence)
         {
-            Command command = new Command
-                ("INSERT INTO Licence (LicenceCat, [Description]) " +
-                "output inserted.id VALUES (@LicenceCat, @Description);");
+            Command command = new Command("SP_InsertLicence", true);
 
             command.AddParameter("LicenceCat", licence.LicenceCat);
             command.AddParameter("Description", licence.Description);
@@ -48,8 +47,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, LicenceGlobal licence)
         {
-            Command command = new Command
-                ("UPDATE Licence Set LicenceCat=@LicenceCat, [Description]=@Description WHERE id=@id");
+            Command command = new Command("SP_UpdateLicence", true);
 
             command.AddParameter("LicenceCat", licence.LicenceCat);
             command.AddParameter("Description", licence.Description);

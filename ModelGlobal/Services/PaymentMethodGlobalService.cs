@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM PaymentMethod WHERE Id=@Id");
+            Command command = new Command("SP_DeletePayment", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<PaymentMethodGlobal> Get()
         {
-            Command command = new Command("Select * FROM PaymentMethod");
+            Command command = new Command("SP_GetAllPayment", true);
             //chaque ligne du reader est convertie au format PaymentMethodGlobal
             return _connection.ExecuteReader(command, p => p.ToPaymentMethod());
         }
 
         public PaymentMethodGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM PaymentMethod WHERE id=@id");
+            Command command = new Command("SP_GetByIdPayment", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, p => p.ToPaymentMethod()).SingleOrDefault();
@@ -36,8 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(PaymentMethodGlobal paymentMethod)
         {
-            Command command = new Command
-                ("INSERT INTO PaymentMethod (Method) output inserted.id VALUES (@Method);");
+            Command command = new Command("SP_InsertPayment", true);
 
             command.AddParameter("Method", paymentMethod.Method);
             //le output inserted.id me permet de récupérer la valeur de l'id autoincrémenter et de le renvoyer.
@@ -46,7 +46,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, PaymentMethodGlobal paymentMethod)
         {
-            Command command = new Command("UPDATE PaymentMethod Set Method=@Method WHERE id=@id");
+            Command command = new Command("SP_UpdatePayment", true);
 
             command.AddParameter("Method", paymentMethod.Method);
             command.AddParameter("id", id);

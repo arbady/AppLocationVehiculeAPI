@@ -1,5 +1,6 @@
 ﻿using ModelGlobal.Data;
 using ModelGlobal.Mapper;
+using ModelGlobal.Services.Bases;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,21 @@ namespace ModelGlobal.Services
     {
         public bool Delete(int id)
         {
-            Command command = new Command("Delete FROM Disponibilities WHERE Id=@Id");
+            Command command = new Command("SP_DeleteDispo", true);
             command.AddParameter("id", id);
             return _connection.ExecuteNonQuery(command) == 1;
         }
 
         public IEnumerable<DisponibilitiesGlobal> Get()
         {
-            Command command = new Command("Select * FROM Disponibilities");
+            Command command = new Command("SP_GetAllDispo", true);
             //chaque ligne du reader est convertie au format Disponibilities
             return _connection.ExecuteReader(command, d => d.ToDisponibilities());
         }
 
         public DisponibilitiesGlobal Get(int id)
         {
-            Command command = new Command("Select * FROM Disponibilities WHERE id=@id");
+            Command command = new Command("SP_GetByIdDispo", true);
             command.AddParameter("id", id);
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, d => d.ToDisponibilities()).SingleOrDefault();
@@ -36,9 +37,7 @@ namespace ModelGlobal.Services
 
         public int Post(DisponibilitiesGlobal disponibilities)
         {
-            Command command = new Command
-                ("INSERT INTO Disponibilities (AvailDateDepart, AvailDateReturn, AgencyId, VehicleId) " +
-                "output inserted.id VALUES (@AvailDateDepart, @AvailDateReturn, @AgencyId, @VehicleId);");
+            Command command = new Command("SP_InsertDispo", true);
 
             command.AddParameter("AvailDateDepart", disponibilities.AvailDateDepart);
             command.AddParameter("AvailDateReturn", disponibilities.AvailDateReturn);
@@ -50,9 +49,7 @@ namespace ModelGlobal.Services
 
         public bool Put(int id, DisponibilitiesGlobal disponibilities)
         {
-            Command command = new Command
-                ("UPDATE Disponibilities Set AvailDateDepart=@AvailDateDepart, AvailDateReturn=@AvailDateReturn, " +
-                "AgencyId=@AgencyId, VehicleId=@VehicleId WHERE id=@id");
+            Command command = new Command("SP_UpdateDispo", true);
 
             command.AddParameter("AvailDateDepart", disponibilities.AvailDateDepart);
             command.AddParameter("AvailDateReturn", disponibilities.AvailDateReturn);
