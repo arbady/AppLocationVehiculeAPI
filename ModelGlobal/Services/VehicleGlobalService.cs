@@ -35,16 +35,43 @@ namespace ModelGlobal.Services
             return _connection.ExecuteReader(command, v => v.ToVehicle()).SingleOrDefault();
         }
 
+        public IEnumerable<VehicleGlobal> GetCatForVehicle(int id)
+        {
+            Command command = new Command("SP_VehicleCat", true);
+
+            command.AddParameter("catid", id);
+            return _connection.ExecuteReader(command, c => c.ToVehicle());
+        }
+        public IEnumerable<VehicleGlobal> GetVehiclesByAgency(int id)
+        {
+            Command command = new Command("SP_AllVehicleByAgency", true);
+
+            command.AddParameter("agencyid", id);
+            return _connection.ExecuteReader(command, c => c.ToVehicle());
+        }
+
+        public IEnumerable<VehicleGlobal> GetDispoForVehicle(DateTime tdate, int idAgency, int idCategory)
+        {
+            Command command = new Command("SP_VehicleIsDispo", true);
+            //command.AddParameter("vehicleId", idVehicle);
+            command.AddParameter("date", tdate);
+            command.AddParameter("agencyId", idAgency);
+            command.AddParameter("categoryId", idCategory);
+            //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
+            return _connection.ExecuteReader(command, d => d.ToVehicle());
+        }
         public int Post(VehicleGlobal vehicule)
         {
             Command command = new Command("SP_InsertVehicle", true);
             
             command.AddParameter("RegistrationNum", vehicule.RegistrationNum);
+            command.AddParameter("Characteristic", vehicule.Characteristic);
             command.AddParameter("NbPlace", vehicule.NbPlace);
             command.AddParameter("NbDoor", vehicule.NbDoor);
             command.AddParameter("Fuel", vehicule.Fuel);
             command.AddParameter("AirCo", vehicule.AirCo);
             command.AddParameter("Gps", vehicule.Gps);
+            command.AddParameter("Transmission", vehicule.Transmission);
             command.AddParameter("StateId", vehicule.StateId);
             command.AddParameter("ModelId", vehicule.ModelId);
             command.AddParameter("CategoryId", vehicule.CategoryId);
@@ -57,11 +84,13 @@ namespace ModelGlobal.Services
             Command command = new Command("SP_UpdateVehicle", true);
             
             command.AddParameter("RegistrationNum", vehicule.RegistrationNum);
+            command.AddParameter("Characteristic", vehicule.Characteristic);
             command.AddParameter("NbPlace", vehicule.NbPlace);
             command.AddParameter("NbDoor", vehicule.NbDoor);
             command.AddParameter("Fuel", vehicule.Fuel);
             command.AddParameter("AirCo", vehicule.AirCo);
             command.AddParameter("Gps", vehicule.Gps);
+            command.AddParameter("Transmission", vehicule.Transmission);
             command.AddParameter("StateId", vehicule.StateId);
             command.AddParameter("ModelId", vehicule.ModelId);
             command.AddParameter("CategoryId", vehicule.CategoryId);

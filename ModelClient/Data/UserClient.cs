@@ -20,15 +20,18 @@ namespace ModelClient.Data
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string RePassword { get; set; }
+        //public string RePassword { get; set; }
         public Role Role { get; set; }
         public string Token { get; set; }
+        public IEnumerable<LicenceClient> Licences { get; set; }
 
-        public UserClient(){}
+        public UserClient(){
+            this.Licences = new List<LicenceClient>();
+        }
 
         public UserClient(int id, string firstName, string lastName, Sex sex, DateTime birthDate, 
             DateTime registrationDate, string address, string phone, string email, string password, 
-            /*string rePassword*/ Role role)
+            /*string rePassword*/ Role role) : this()
         {
             Id = id;
             FirstName = firstName;
@@ -45,7 +48,7 @@ namespace ModelClient.Data
         }
         public UserClient(string firstName, string lastName, Sex sex, DateTime birthDate, 
             DateTime registrationDate, string address, string phone, string email, string password, 
-            /*string rePassword*/ Role role)
+            /*string rePassword*/ Role role) : this()
         {
             FirstName = firstName;
             LastName = lastName;

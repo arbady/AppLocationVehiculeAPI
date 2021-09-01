@@ -14,11 +14,15 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class VehicleController : ControllerBase
     {
-        //private VehicleClientService _vehicleService = new VehicleClientService();
         private readonly IRepoVehicle<VehicleClient> _vehicleService;
-        public VehicleController(IRepoVehicle<VehicleClient> vehicleService)
+        private readonly IRepoAgency<AgencyClient> _agencyService;
+        private readonly IRepoDisponibilities<DisponibilitiesClient> _dispoService;
+        public VehicleController(IRepoVehicle<VehicleClient> vehicleService,
+            IRepoAgency<AgencyClient> agencyService, IRepoDisponibilities<DisponibilitiesClient> dispoService)
         {
             _vehicleService = vehicleService;
+            _agencyService = agencyService;
+            _dispoService = dispoService;
         }
 
         // GET: api/Vehicle
@@ -33,6 +37,34 @@ namespace LocationVehicule.API.Controllers
         public VehicleClient Get(int id)
         {
             return _vehicleService.Get(id);
+        }
+        
+        // GET: api/Vehicle/3/Agency
+        [HttpGet("{id:int}/Agency")]
+        public AgencyClient GetAgency(int id)
+        {
+            return _agencyService.GetForVehicle(id);
+        }               
+        
+        // GET: api/Vehicle/Disponibilities
+        [HttpGet("/Disponibilities")]
+        public IEnumerable<VehicleClient> GetDisponibilities(DateTime tdate, int idAgency, int idCategory)
+        {
+            return _vehicleService.GetDispoForVehicle(tdate, idAgency, idCategory);
+        }
+
+        // Get: api/Vehicle/Category/2/
+        [HttpGet("Category/{id:int}")]
+        public IEnumerable<VehicleClient> GetCatForVehicle(int id) 
+        {
+            return _vehicleService.GetCatForVehicle(id);
+        }
+
+        // GET: api/Vehicle/Agency/3/
+        [HttpGet("Agency/{id:int}")]
+        public IEnumerable<VehicleClient> VehiclesByAgency(int id)
+        {
+            return _vehicleService.GetVehiclesByAgency(id);
         }
 
         // POST: api/Vehicle

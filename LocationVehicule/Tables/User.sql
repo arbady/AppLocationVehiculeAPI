@@ -14,5 +14,5 @@
 	[Salt] UniqueIdentifier NOT NULL DEFAULT(NewID())
     CONSTRAINT [PK_User] PRIMARY KEY ([Id]), 
     CONSTRAINT [CK_User_Email] CHECK  (([Email] like '__%@__%.%')), 
-	CONSTRAINT [UK_User_Email] Unique(email) 
+	CONSTRAINT [UK_User_Email] Unique(Email) 
 )

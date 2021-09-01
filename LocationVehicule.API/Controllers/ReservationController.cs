@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelClient.Data;
 using ModelClient.Services;
@@ -17,10 +18,28 @@ namespace LocationVehicule.API.Controllers
     {
         //private ReservationClientService _reservationService = new ReservationClientService();
         private readonly IRepoReservation<ReservationClient> _reservationService;
-        public ReservationController(IRepoReservation<ReservationClient> reservationService)
+        //private readonly IRepoUser<UserClient> _userService;
+        //private readonly IRepoAgency<AgencyClient> _agencyService;
+        //private readonly IRepoCategory<CategoryClient> _categoryService;
+        //private readonly IRepoVehicle<VehicleClient> _vehicleService;
+        //private readonly IRepoContract<ContractClient> _contractService;
+        //private readonly IRepoBill<BillClient> _billService;
+
+        public ReservationController(IRepoReservation<ReservationClient> reservationService 
+            //IRepoUser<UserClient> userService, IRepoAgency<AgencyClient> agencyService, 
+            //IRepoCategory<CategoryClient> categoryService, IRepoVehicle<VehicleClient> vehicleService, 
+            //IRepoContract<ContractClient> contractService, IRepoBill<BillClient> billService
+            )
         {
             _reservationService = reservationService;
+            //_userService = userService;
+            //_agencyService = agencyService;
+            //_categoryService = categoryService;
+            //_vehicleService = vehicleService;
+            //_contractService = contractService;
+            //_billService = billService;
         }
+
 
         // GET: api/Reservation
         [HttpGet]
@@ -31,12 +50,16 @@ namespace LocationVehicule.API.Controllers
 
         // GET: api/Reservation/3
         [HttpGet("{id:int}")]
-        public ReservationClient Get(int id)
+        public ReservationClient Get(int id, bool user, bool agency, bool cat)
         {
-            return _reservationService.Get(id);
+            ReservationClient result = null;
+            result = _reservationService.Get(id);
+            //if (user) result.User = _userService.Get(result.UserId);
+            return result;
         }
 
         // POST: api/Reservation
+        //[Authorize]
         [HttpPost]
         public int Post([FromBody] ReservationClient reserv)
         {
@@ -56,5 +79,8 @@ namespace LocationVehicule.API.Controllers
         {
             return _reservationService.Delete(id);
         }
+
+        //public ReservationClient GetContract() { }
+        //public ReservationClient GetBill() { }
     }
 }

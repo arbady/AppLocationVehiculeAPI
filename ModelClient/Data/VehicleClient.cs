@@ -8,10 +8,28 @@ using System.Threading.Tasks;
 
 namespace ModelClient.Data
 {
-    public class VehicleClient : VehicleGlobal
+    public class VehicleClient
     {
-        public VehicleClient(){}
-        public VehicleClient(int id, string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, int categoryId)
+        public int Id { get; set; }
+        public string RegistrationNum { get; set; }
+        public string Characteristic { get; set; }
+        public NbPlace NbPlace { get; set; }
+        public NbDoor NbDoor { get; set; }
+        public Fuel Fuel { get; set; }
+        public bool AirCo { get; set; }
+        public bool Gps { get; set; }
+        public Transmission? Transmission { get; set; }
+        public int StateId { get; set; }
+        public int ModelId { get; set; }
+        public int CategoryId { get; set; }
+        public IEnumerable<DisponibilitiesClient> Disponibilities { get; set; }
+        public VehicleClient()
+        {
+            this.Disponibilities = new List<DisponibilitiesClient>();
+        }
+        public VehicleClient(int id, string registrationNum, string characteristic, NbPlace nbPlace, 
+            NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, 
+            int modelId, int categoryId) : this()
         {
             Id = id;
             RegistrationNum = registrationNum;
@@ -26,7 +44,9 @@ namespace ModelClient.Data
             ModelId = modelId;
             CategoryId = categoryId;
         }
-        public VehicleClient(string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, int categoryId)
+        public VehicleClient(string registrationNum, string characteristic, NbPlace nbPlace, NbDoor nbDoor, 
+            Fuel fuel, bool airCo, bool gps, Transmission? transmission, int stateId, int modelId, 
+            int categoryId) : this()
         {
             RegistrationNum = registrationNum;
             Characteristic = characteristic;

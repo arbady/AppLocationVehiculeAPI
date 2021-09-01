@@ -155,6 +155,13 @@
     <Build Include="StoredProcedures\Select\GetById\SP_GetByIdUser.sql" />
     <Build Include="StoredProcedures\Select\GetById\SP_GetByIdVehicle.sql" />
     <Build Include="StoredProcedures\Select\GetById\SP_GetByIdState.sql" />
+    <Build Include="Views\V_Dispo.sql" />
+    <Build Include="StoredProcedures\Select\GetById\SP_GetAllLicenceByUserId.sql" />
+    <Build Include="StoredProcedures\Select\GetById\SP_GetAgencyByIdVehicle.sql" />
+    <Build Include="StoredProcedures\Select\GetAll\SP_VehicleIsDispo.sql" />
+    <Build Include="StoredProcedures\Select\GetAll\SP_VehicleCat.sql" />
+    <Build Include="StoredProcedures\Select\GetAll\SP_AllVehicleByAgency.sql" />
+    <Build Include="Tables\Booking.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LocationVehicule.DataBase.refactorlog" />

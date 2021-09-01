@@ -109,17 +109,19 @@ namespace ModelClient.Mapper
             return new DisponibilitiesGlobal
             {
                 Id = disponibilities.Id,
-                AvailDateDepart = disponibilities.AvailDateDepart,
-                AvailDateReturn = disponibilities.AvailDateReturn,
+                EntryDate = disponibilities.EntryDate,
+                IsInput = disponibilities.IsInput,
                 AgencyId = disponibilities.AgencyId,
                 VehicleId = disponibilities.VehicleId
+                //Agency = disponibilities.Agency,
+                //Vehicle = disponibilities.Vehicle
             };
         }
         internal static DisponibilitiesClient ToDisponibilitiesClient(this DisponibilitiesGlobal disponibilities)
         {
             return new DisponibilitiesClient(
-                disponibilities.Id, disponibilities.AvailDateDepart, disponibilities.AvailDateReturn,
-                disponibilities.AgencyId, disponibilities.VehicleId);
+                disponibilities.Id, disponibilities.EntryDate, disponibilities.IsInput,
+                disponibilities.AgencyId, disponibilities.VehicleId /*disponibilities.Agency, disponibilities.Vehicle*/);
         }
         #endregion
 
@@ -161,12 +163,13 @@ namespace ModelClient.Mapper
             {
                 Id = model.Id,
                 Name = model.Name,
-                MarkId = model.MarkId
+                MarkId = model.MarkId,
+                Mark = model.Mark
             };
         }
         internal static ModeleClient ToModelClient(this ModelGlobale model)
         {
-            return new ModeleClient(model.Id, model.Name, model.MarkId);
+            return new ModeleClient(model.Id, model.Name, model.MarkId, model.Mark);
         }
         #endregion
 
@@ -214,14 +217,14 @@ namespace ModelClient.Mapper
                 ReservationDate = reservation.ReservationDate,
                 StartDateLocation = reservation.StartDateLocation,
                 EndDateLocation = reservation.EndDateLocation,
-                AmountTotTVA = reservation.AmountTotTVA,
-                Deposit = reservation.Deposit,
-                DepositPaid = reservation.DepositPaid,
+                //AmountTotTVA = reservation.AmountTotTVA,
+                //Deposit = reservation.Deposit,
+                //DepositPaid = reservation.DepositPaid,
                 ReturnAgency = reservation.ReturnAgency,
                 DamageCover = reservation.DamageCover,
                 RobberyCover = reservation.RobberyCover,
                 AgeRange = reservation.AgeRange,
-                PaidAll = reservation.PaidAll,
+                //PaidAll = reservation.PaidAll,
                 IsCancelled = reservation.IsCancelled,
                 UserId = reservation.UserId,
                 AgencyId = reservation.AgencyId,
@@ -232,10 +235,9 @@ namespace ModelClient.Mapper
         {
             return new ReservationClient(
                 reservation.Id, reservation.ReservationDate, reservation.StartDateLocation,
-                reservation.EndDateLocation, reservation.AmountTotTVA, reservation.Deposit,
-                reservation.DepositPaid, reservation.ReservationStatus, reservation.ReturnAgency,
-                reservation.DamageCover, reservation.RobberyCover, reservation.AgeRange, reservation.PaidAll,
-                reservation.IsCancelled, reservation.UserId, reservation.AgencyId, reservation.CategoryId);
+                reservation.EndDateLocation, reservation.ReturnAgency, reservation.DamageCover, 
+                reservation.RobberyCover, reservation.AgeRange, reservation.IsCancelled, reservation.UserId, 
+                reservation.AgencyId, reservation.CategoryId);
         }
         #endregion
 

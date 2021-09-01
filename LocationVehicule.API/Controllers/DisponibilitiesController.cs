@@ -14,7 +14,6 @@ namespace LocationVehicule.API.Controllers
     [ApiController]
     public class DisponibilitiesController : ControllerBase
     {
-        //private DisponibilitiesClientService _disponibilitiesService = new DisponibilitiesClientService();
         private readonly IRepoDisponibilities<DisponibilitiesClient> _disponibilitiesService;
         public DisponibilitiesController(IRepoDisponibilities<DisponibilitiesClient> disponibilitiesService)
         {

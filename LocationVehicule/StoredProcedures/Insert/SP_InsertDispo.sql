@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[SP_InsertDispo]
-	@AvailDateDepart datetime2(7),
-	@AvailDateReturn datetime2(7),
+	@entryDate datetime2(7),
+	@isinput bit,
 	@AgencyId int,
 	@VehicleId int
 AS
 	BEGIN
-		INSERT INTO Disponibilities(AvailDateDepart, AvailDateReturn, AgencyId, VehicleId)
+		INSERT INTO Disponibilities(EntryDate, IsInput, AgencyId, VehicleId)
 		OUTPUT inserted.Id 
-		VALUES (@AvailDateDepart, @AvailDateReturn, @AgencyId, @VehicleId) 
+		VALUES (@entryDate, @isinput, @AgencyId, @VehicleId) 
 	END

@@ -22,7 +22,8 @@ namespace ModelGlobal.Services
 
         public IEnumerable<DisponibilitiesGlobal> Get()
         {
-            Command command = new Command("SP_GetAllDispo", true);
+            Command command = new Command("SELECT * FROM V_Dispo");
+            //Command command = new Command("SP_GetAllDispo", true);
             //chaque ligne du reader est convertie au format Disponibilities
             return _connection.ExecuteReader(command, d => d.ToDisponibilities());
         }
@@ -39,8 +40,8 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_InsertDispo", true);
 
-            command.AddParameter("AvailDateDepart", disponibilities.AvailDateDepart);
-            command.AddParameter("AvailDateReturn", disponibilities.AvailDateReturn);
+            command.AddParameter("entryDate", disponibilities.EntryDate);
+            command.AddParameter("isinput", disponibilities.IsInput);
             command.AddParameter("AgencyId", disponibilities.AgencyId);
             command.AddParameter("VehicleId", disponibilities.VehicleId);
             //le output inserted.id me permet de récupérer la valeur de l'id autoincrémenter et de le renvoyer.
@@ -51,8 +52,8 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_UpdateDispo", true);
 
-            command.AddParameter("AvailDateDepart", disponibilities.AvailDateDepart);
-            command.AddParameter("AvailDateReturn", disponibilities.AvailDateReturn);
+            command.AddParameter("entryDate", disponibilities.EntryDate);
+            command.AddParameter("isinput", disponibilities.IsInput);
             command.AddParameter("AgencyId", disponibilities.AgencyId);
             command.AddParameter("VehicleId", disponibilities.VehicleId);
             command.AddParameter("id", id);

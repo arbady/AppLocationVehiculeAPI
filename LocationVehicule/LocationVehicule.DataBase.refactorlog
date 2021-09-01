@@ -427,4 +427,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="AmountTotHTVA" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3427a21b-cbb1-4a5a-8683-4d66b3f67a56" ChangeDateTime="08/26/2021 12:37:57">
+    <Property Name="ElementName" Value="[dbo].[Disponibilities].[AvailDateDepart]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Disponibilities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EntryDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="12644d4d-9399-4623-9ec3-e1de4f3e0c52" ChangeDateTime="08/26/2021 12:38:10">
+    <Property Name="ElementName" Value="[dbo].[Disponibilities].[AvailDateReturn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Disponibilities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsInput" />
+  </Operation>
 </Operations>

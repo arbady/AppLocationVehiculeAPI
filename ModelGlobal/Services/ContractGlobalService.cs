@@ -41,6 +41,8 @@ namespace ModelGlobal.Services
 
             command.AddParameter("ContractNum", contract.ContractNum);
             command.AddParameter("RealReturnDate", contract.RealReturnDate);
+            command.AddParameter("DepartKm", contract.DepartKm);
+            command.AddParameter("BackKm", contract.BackKm);
             command.AddParameter("ContractDate", contract.ContractDate);
             command.AddParameter("AmountTotHTVA", contract.AmountTotHTVA);
             command.AddParameter("AmountTotTVA", contract.AmountTotTVA);
@@ -58,6 +60,8 @@ namespace ModelGlobal.Services
 
             command.AddParameter("ContractNum", contract.ContractNum);
             command.AddParameter("RealReturnDate", contract.RealReturnDate);
+            command.AddParameter("DepartKm", contract.DepartKm);
+            command.AddParameter("BackKm", contract.BackKm);
             command.AddParameter("ContractDate", contract.ContractDate);
             command.AddParameter("AmountTotHTVA", contract.AmountTotHTVA);
             command.AddParameter("AmountTotTVA", contract.AmountTotTVA);

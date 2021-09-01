@@ -14,14 +14,17 @@ namespace LocationVehicule.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class UserController : ControllerBase
     {
         //private UserClientService _userService = new UserClientService();
         private readonly IRepoUser<UserClient> _userService;
-        public UserController(IRepoUser<UserClient> userService)
+        private readonly IRepoLicence<LicenceClient> _licenceService;
+
+        public UserController(IRepoUser<UserClient> userService, IRepoLicence<LicenceClient> licenceService)
         {
             _userService = userService;
+            this._licenceService = licenceService;
         }
 
         // GET: api/<UserController>
@@ -31,11 +34,21 @@ namespace LocationVehicule.API.Controllers
             return _userService.Get();
         }
 
+        //// GET api/<UserController>/5
+        //[HttpGet("{id}")]
+        //public UserClient Get(int id)
+        //{
+        //    return _userService.Get(id);
+        //}
+
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public UserClient Get(int id)
+        public UserClient Get(int id, bool licence)
         {
-            return _userService.Get(id);
+            UserClient result = null;
+            if (id > 0) result  = _userService.Get(id);
+            if (licence) result.Licences = _licenceService.GetForUser(result.Id);
+            return result;
         }
 
         // POST api/<UserController>

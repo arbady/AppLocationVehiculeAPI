@@ -110,36 +110,50 @@ Set Identity_insert [Licence] off;
 
 Set Identity_insert [Reservation] on;
 INSERT INTO [Reservation] 
-(Id, ReservationDate, StartDateLocation, EndDateLocation, AmountTotTVA, Deposit, DepositPaid, ReservationStatus, 
-ReturnAgency, DamageCover, RobberyCover, AgeRange, PaidAll, IsCancelled, UserId, AgencyId, CategoryId) VALUES
-(1, '2021-08-11 00:00:00', '2021-08-11 00:00:00', '2021-08-30 00:00:00', 400, 200.59, 1, 1, 'Aeroport de Liège', 1, 1, 1, 1, 0, 1, 1, 1),
-(2, '2021-09-01 00:00:00', '2021-09-01 00:00:00', '2021-09-21 00:00:00', 500, 250, 1, 1, 'Brussels Airport Zaventem', 1, 0, 1, 1, 0, 2, 2, 2),
-(3, '2021-08-21 00:00:00', '2021-08-21 00:00:00', '2021-08-30 00:00:00', 200, 100, 0, 0, 'Brussels Airport Zaventem', 0, 1, 1, 0, 1, 3, 3, 3),
-(4, '2021-09-22 00:00:00', '2021-09-22 00:00:00', '2021-09-30 00:00:00', 200, 100, 0, 0, 'Aeroport de Charleroi', 0, 1, 1, 0, 1, 3, 3, 3),
-(5, '2021-09-23 00:00:00', '2021-09-23 00:00:00', '2021-09-30 00:00:00', 200, 100, 0, 0, 'Brussels Airport Zaventem', 0, 1, 1, 0, 1, 3, 3, 3)
+(Id, ReservationDate, StartDateLocation, EndDateLocation, ReturnAgency, DamageCover, RobberyCover, AgeRange, 
+IsCancelled, UserId, AgencyId, CategoryId) VALUES
+(1, '2021-08-11 00:00:00', '2021-08-11 00:00:00', '2021-08-30 00:00:00', 3, 1, 1, 1, 0, 1, 1, 1),
+(2, '2021-09-01 00:00:00', '2021-09-01 00:00:00', '2021-09-21 00:00:00', 1, 1, 0, 1, 0, 2, 2, 2),
+(3, '2021-08-21 00:00:00', '2021-08-21 00:00:00', '2021-08-30 00:00:00', 1, 0, 1, 1, 1, 3, 3, 3),
+(4, '2021-09-22 00:00:00', '2021-09-22 00:00:00', '2021-09-30 00:00:00', 2, 0, 1, 1, 1, 3, 3, 3),
+(5, '2021-09-23 00:00:00', '2021-09-23 00:00:00', '2021-09-30 00:00:00', 1, 0, 1, 1, 1, 3, 3, 3)
 Set Identity_insert [Reservation] off;
 
+Set Identity_insert [Booking] on;
+INSERT INTO [Booking] 
+(Id, ReservationId, AmountTotTVA, Deposit, DepositPaid, ReservationStatus, PaidAll) VALUES
+(1, 1, 400, 200, 1, 1, 1),
+(2, 2, 500, 250, 1, 1, 1),
+(3, 3, 200, 100, 0, 0, 0),
+(4, 4, 200, 100, 0, 0, 0),
+(5, 5, 200, 100, 0, 0, 0)
+Set Identity_insert [Booking] off;
 --Data Vehicle--
 
 Set Identity_insert [Vehicle] on;
 INSERT INTO [Vehicle] 
 (Id, RegistrationNum, NbPlace, NbDoor, Fuel, AirCo, Gps, StateId, ModelId, CategoryId) VALUES
 (1, '1TWJ785', 5, 1, 1, 1, 1, 1, 1, 1),
-(2, '1TWJ785', 3, 3, 1, 0, 1, 1, 2, 2),
-(3, '1TWJ785', 4, 2, 0, 1, 1, 1, 3, 3),
-(4, '1TWJ785', 2, 4, 1, 1, 2, 1, 4, 4),
-(5, '1TWJ785', 1, 5, 1, 1, 3, 1, 5, 5)
+(2, '1TWJ723', 3, 3, 1, 0, 1, 1, 2, 2),
+(3, '1TWJ712', 4, 2, 0, 1, 1, 1, 3, 3),
+(4, '1TWJ754', 2, 4, 1, 1, 2, 1, 4, 4),
+(5, '1TWJ776', 1, 5, 1, 1, 3, 1, 5, 5)
 Set Identity_insert [Vehicle] off;
 
 --Data Disponibilities--
 
 Set Identity_insert [Disponibilities] on;
-INSERT INTO Disponibilities (Id, AvailDateDepart, AvailDateReturn, AgencyId, VehicleId) VALUES
-(1, '2020-10-19 00:00:00', '2020-11-19 00:00:00', 1, 1),
-(2, '2020-11-20 00:00:00', '2020-12-20 00:00:00', 2, 2),
-(3, '2020-05-11 00:00:00', '2020-06-11 00:00:00', 3, 3),
-(4, '2020-09-06 00:00:00', '2020-10-06 00:00:00', 4, 4),
-(5, '2020-05-12 00:00:00', '2020-06-12 00:00:00', 5, 5)
+INSERT INTO Disponibilities (Id, EntryDate, IsInput, AgencyId, VehicleId) VALUES
+(1, '2020-10-19 00:00:00', 0 , 1, 1),
+(2, '2020-11-19 00:00:00', 1 , 1, 1),
+(3, '2020-11-20 00:00:00', 0, 2, 2),
+(4, '2020-12-20 00:00:00',1, 2, 2),
+(5, '2020-05-11 00:00:00', 0, 3, 3),
+(6, '2020-06-11 00:00:00', 1, 3, 3),
+(7, '2020-09-06 00:00:00', 0, 4, 4),
+(8, '2020-10-06 00:00:00', 1, 4, 4),
+(9, '2020-05-12 00:00:00',  0, 5, 5),
+(10, '2020-06-12 00:00:00', 1, 5, 5)
 Set Identity_insert Disponibilities off;
 
 --Data Contract--

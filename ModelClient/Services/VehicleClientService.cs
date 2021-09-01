@@ -35,6 +35,19 @@ namespace ModelClient.Services
             return _vehicleGlobalService.Get(id)?.ToVehicleClient();
         }
 
+        public IEnumerable<VehicleClient> GetCatForVehicle(int id)
+        {
+            return _vehicleGlobalService.GetCatForVehicle(id).Select(v => v.ToVehicleClient());
+        }
+        public IEnumerable<VehicleClient> GetVehiclesByAgency(int id)
+        {
+            return _vehicleGlobalService.GetVehiclesByAgency(id).Select(v => v.ToVehicleClient());
+        }
+
+        public IEnumerable<VehicleClient> GetDispoForVehicle(DateTime tdate, int idAgency, int idCategory)
+        {
+            return _vehicleGlobalService.GetDispoForVehicle(tdate, idAgency, idCategory).Select(d => d.ToVehicleClient());
+        }
         public int Post(VehicleClient vehicule)
         {
             return _vehicleGlobalService.Post(vehicule.ToVehicleGlobal());

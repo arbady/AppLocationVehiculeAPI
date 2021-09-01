@@ -39,6 +39,7 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_InsertPenal", true);
 
+            command.AddParameter("Description", penalization.Description);
             command.AddParameter("PenalDate", penalization.PenalDate);
             command.AddParameter("AmountOwed", penalization.AmountOwed);
             command.AddParameter("AmountPaid", penalization.AmountPaid);
@@ -50,6 +51,7 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_UpdatePenal", true);
 
+            command.AddParameter("Description", penalization.Description);
             command.AddParameter("PenalDate", penalization.PenalDate);
             command.AddParameter("AmountOwed", penalization.AmountOwed);
             command.AddParameter("AmountPaid", penalization.AmountPaid);

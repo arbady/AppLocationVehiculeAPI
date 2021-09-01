@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelGlobal.Data
 {
-    public class AgencyGlobal
+    public /*sealed*/ class AgencyGlobal
     { 
         public int Id { get; set; }
         public string Code { get; set; }

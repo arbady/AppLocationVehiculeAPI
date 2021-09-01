@@ -13,5 +13,6 @@ namespace Repositories
         int Post(TAgency agency);
         bool Put(int id, TAgency agency);
         bool Delete(int id);
+        TAgency GetForVehicle(int id);
     }
 }

@@ -30,6 +30,11 @@ namespace ModelClient.Services
             return _licenceGlobalService.Get().Select(l => l.ToLicenceClient());
         }
 
+        public IEnumerable<LicenceClient> GetForUser(int idUser)
+        {
+            return _licenceGlobalService.GetForUser(idUser).Select(l => l.ToLicenceClient());
+        }
+
         public LicenceClient Get(int id)
         {
             return _licenceGlobalService.Get(id)?.ToLicenceClient();

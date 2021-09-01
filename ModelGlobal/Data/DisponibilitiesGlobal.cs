@@ -9,9 +9,11 @@ namespace ModelGlobal.Data
     public class DisponibilitiesGlobal
     {
         public int Id { get; set; }
-        public DateTime AvailDateDepart { get; set; }
-        public DateTime AvailDateReturn { get; set; }
+        public DateTime EntryDate { get; set; }
+        public bool IsInput { get; set; }
         public int AgencyId { get; set; }
         public int VehicleId { get; set; }
+        //public AgencyGlobal Agency { get; set; }
+        //public VehicleGlobal Vehicle { get; set; }
     }
 }

@@ -9,41 +9,48 @@ namespace ModelClient.Data
 {
     public class ReservationClient : ReservationGlobal
     {
+        public UserClient User { get; set; }
+        public AgencyClient Agency { get; set; }
+        public CategoryClient Category { get; set; }
         public ReservationClient(){}
-        public ReservationClient(int id, DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, double amountTotTVA, double deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
+        public ReservationClient(int id, DateTime reservationDate, DateTime startDateLocation, 
+            DateTime endDateLocation, int returnAgency, bool damageCover, bool robberyCover, 
+            bool ageRange, bool isCancelled, int userId, int agencyId, int categoryId)
         {
             Id = id;
             ReservationDate = reservationDate;
             StartDateLocation = startDateLocation;
             EndDateLocation = endDateLocation;
-            AmountTotTVA = amountTotTVA;
-            Deposit = deposit;
-            DepositPaid = depositPaid;
-            ReservationStatus = reservationStatus;
+            //AmountTotTVA = amountTotTVA;
+            //Deposit = deposit;
+            //DepositPaid = depositPaid;
+            //ReservationStatus = reservationStatus;
             ReturnAgency = returnAgency;
             DamageCover = damageCover;
             RobberyCover = robberyCover;
             AgeRange = ageRange;
-            PaidAll = paidAll;
+            //PaidAll = paidAll;
             IsCancelled = isCancelled;
             UserId = userId;
             AgencyId = agencyId;
             CategoryId = categoryId;
         }
-        public ReservationClient(DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, double amountTotTVA, double deposit, bool depositPaid, bool reservationStatus, string returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool paidAll, bool isCancelled, int userId, int agencyId, int categoryId)
+        public ReservationClient(DateTime reservationDate, DateTime startDateLocation, DateTime endDateLocation, 
+            int returnAgency, bool damageCover, bool robberyCover, bool ageRange, bool isCancelled, int userId, 
+            int agencyId, int categoryId)
         {
             ReservationDate = reservationDate;
             StartDateLocation = startDateLocation;
             EndDateLocation = endDateLocation;
-            AmountTotTVA = amountTotTVA;
-            Deposit = deposit;
-            DepositPaid = depositPaid;
-            ReservationStatus = reservationStatus;
+            //AmountTotTVA = amountTotTVA;
+            //Deposit = deposit;
+            //DepositPaid = depositPaid;
+            //ReservationStatus = reservationStatus;
             ReturnAgency = returnAgency;
             DamageCover = damageCover;
             RobberyCover = robberyCover;
             AgeRange = ageRange;
-            PaidAll = paidAll;
+            //PaidAll = paidAll;
             IsCancelled = isCancelled;
             UserId = userId;
             AgencyId = agencyId;

@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[SP_UpdateDispo]
 	@Id int, 
-	@AvailDateDepart datetime2(7),
-	@AvailDateReturn datetime2(7),
+	@entryDate datetime2(7),
+	@isinput bit,
 	@AgencyId int,
 	@VehicleId int
 AS
 	BEGIN
 		UPDATE Disponibilities
-		SET AvailDateDepart=@AvailDateDepart, AvailDateReturn=@AvailDateReturn, AgencyId=@AgencyId, 
+		SET EntryDate=@entryDate, IsInput=@isinput, AgencyId=@AgencyId, 
 			VehicleId=@VehicleId
 		WHERE Id=@Id
 	END

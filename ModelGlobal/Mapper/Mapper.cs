@@ -91,10 +91,36 @@ namespace ModelGlobal.Mapper
             return new DisponibilitiesGlobal()
             {
                 Id = (int)reader[nameof(DisponibilitiesGlobal.Id)],
-                AvailDateDepart = (DateTime)reader[nameof(DisponibilitiesGlobal.AvailDateDepart)],
-                AvailDateReturn = (DateTime)reader[nameof(DisponibilitiesGlobal.AvailDateReturn)],
+                EntryDate = (DateTime)reader[nameof(DisponibilitiesGlobal.EntryDate)],
+                IsInput = (bool)reader[nameof(DisponibilitiesGlobal.IsInput)],
                 AgencyId = (int)reader[nameof(DisponibilitiesGlobal.AgencyId)],
                 VehicleId = (int)reader[nameof(DisponibilitiesGlobal.VehicleId)]
+                //Agency = new AgencyGlobal
+                //{
+                //    Id = (int)reader["Agency.Id"],
+                //    Code = (string)reader["Agency.Code"],
+                //    Airport = (string)reader["Agency.Airport"],
+                //    Address = (string)reader["Agency.Address"],
+                //    ZipCode = (int)reader["Agency.ZipCode"],
+                //    City = (string)reader["Agency.City"],
+                //    Country = (string)reader["Agency.Country"],
+                //    IsClosed = (bool)reader["Agency.IsClosed"]
+                //},
+                //Vehicle = new VehicleGlobal
+                //{
+                //    Id = (int)reader["Vehicle.Id"],
+                //    RegistrationNum = (string)reader["Vehicle.RegNum"],
+                //    Characteristic = (string)(reader["Vehicle.Charac"] is DBNull ? null : reader["Vehicle.Charac"]),
+                //    NbPlace = (NbPlace)reader["Vehicle.NbP"],
+                //    NbDoor = (NbDoor)reader["Vehicle.NbD"],
+                //    Fuel = (Fuel)reader["Vehicle.Fuel"],
+                //    AirCo = (bool)reader["Vehicle.AirCo"],
+                //    Gps = (bool)reader["Vehicle.Gps"],
+                //    Transmission = (Transmission?)(reader["Vehicle.Trans"] is DBNull ? null : (Transmission)reader["Vehicle.Trans"]),
+                //    StateId = (int)reader["Vehicle.StateId"],
+                //    ModelId = (int)reader["Vehicle.ModelId"],
+                //    CategoryId = (int)reader["Vehicle.CatId"]
+                //}
             };
         }
         #endregion
@@ -129,7 +155,11 @@ namespace ModelGlobal.Mapper
             {
                 Id = (int)reader[nameof(ModelGlobale.Id)],
                 Name = (string)reader[nameof(ModelGlobale.Name)],
-                MarkId = (int)reader[nameof(ModelGlobale.MarkId)]
+                MarkId = (int)reader[nameof(ModelGlobale.MarkId)],
+                Mark = new MarkGlobal {
+                    Id = (int)reader[nameof(MarkGlobal.Id)],
+                    Name = (string)reader[nameof(MarkGlobal.Name)]
+                }
             };
         }
         #endregion
@@ -170,14 +200,14 @@ namespace ModelGlobal.Mapper
                 ReservationDate = (DateTime)reader[nameof(ReservationGlobal.ReservationDate)],
                 StartDateLocation = (DateTime)reader[nameof(ReservationGlobal.StartDateLocation)],
                 EndDateLocation = (DateTime)reader[nameof(ReservationGlobal.EndDateLocation)],
-                AmountTotTVA = (double)reader[nameof(ReservationGlobal.AmountTotTVA)],
-                Deposit = (double)reader[nameof(ReservationGlobal.Deposit)],
-                DepositPaid = (bool)reader[nameof(ReservationGlobal.DepositPaid)],
-                ReturnAgency = (string)reader[nameof(ReservationGlobal.ReturnAgency)],
+                //AmountTotTVA = (double)reader[nameof(ReservationGlobal.AmountTotTVA)],
+                //Deposit = (double)reader[nameof(ReservationGlobal.Deposit)],
+                //DepositPaid = (bool)reader[nameof(ReservationGlobal.DepositPaid)],
+                ReturnAgency = (int)reader[nameof(ReservationGlobal.ReturnAgency)],
                 DamageCover = (bool)reader[nameof(ReservationGlobal.DamageCover)],
                 RobberyCover = (bool)reader[nameof(ReservationGlobal.RobberyCover)],
                 AgeRange = (bool)reader[nameof(ReservationGlobal.AgeRange)],
-                PaidAll = (bool)reader[nameof(ReservationGlobal.PaidAll)],
+                //PaidAll = (bool)reader[nameof(ReservationGlobal.PaidAll)],
                 IsCancelled = (bool)reader[nameof(ReservationGlobal.IsCancelled)],
                 UserId = (int)reader[nameof(ReservationGlobal.UserId)],
                 AgencyId = (int)reader[nameof(ReservationGlobal.AgencyId)],
@@ -232,7 +262,7 @@ namespace ModelGlobal.Mapper
                 Fuel = (Fuel)reader[nameof(VehicleGlobal.Fuel)],
                 AirCo = (bool)reader[nameof(VehicleGlobal.AirCo)],
                 Gps = (bool)reader[nameof(VehicleGlobal.Gps)],
-                Transmission = (Transmission?)(reader[nameof(VehicleGlobal.Transmission)] is DBNull? null : reader[nameof(VehicleGlobal.Transmission)]),
+                Transmission = (Transmission?)(reader[nameof(VehicleGlobal.Transmission)] is DBNull? null : (Transmission)reader[nameof(VehicleGlobal.Transmission)]),
                 StateId = (int)reader[nameof(VehicleGlobal.StateId)],
                 ModelId = (int)reader[nameof(VehicleGlobal.ModelId)],
                 CategoryId = (int)reader[nameof(VehicleGlobal.CategoryId)]

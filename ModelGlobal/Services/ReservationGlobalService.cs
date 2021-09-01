@@ -39,19 +39,12 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_InsertReserv", true);
 
-            command.AddParameter("ReservationDate", reservation.ReservationDate);
             command.AddParameter("StartDateLocation", reservation.StartDateLocation);
             command.AddParameter("EndDateLocation", reservation.EndDateLocation);
-            command.AddParameter("AmountTotTVA", reservation.AmountTotTVA);
-            command.AddParameter("Deposit", reservation.Deposit);
-            command.AddParameter("DepositPaid", reservation.DepositPaid);
-            command.AddParameter("ReservationStatus", reservation.ReservationStatus);
             command.AddParameter("ReturnAgency", reservation.ReturnAgency);
             command.AddParameter("DamageCover", reservation.DamageCover);
             command.AddParameter("RobberyCover", reservation.RobberyCover);
             command.AddParameter("AgeRange", reservation.AgeRange);
-            command.AddParameter("PaidAll", reservation.PaidAll);
-            command.AddParameter("IsCancelled", reservation.IsCancelled);
             command.AddParameter("UserId", reservation.UserId);
             command.AddParameter("AgencyId", reservation.AgencyId);
             command.AddParameter("CategoryId", reservation.CategoryId);
@@ -66,15 +59,10 @@ namespace ModelGlobal.Services
             command.AddParameter("ReservationDate", reservation.ReservationDate);
             command.AddParameter("StartDateLocation", reservation.StartDateLocation);
             command.AddParameter("EndDateLocation", reservation.EndDateLocation);
-            command.AddParameter("AmountTotTVA", reservation.AmountTotTVA);
-            command.AddParameter("Deposit", reservation.Deposit);
-            command.AddParameter("DepositPaid", reservation.DepositPaid);
-            command.AddParameter("ReservationStatus", reservation.ReservationStatus);
             command.AddParameter("ReturnAgency", reservation.ReturnAgency);
             command.AddParameter("DamageCover", reservation.DamageCover);
             command.AddParameter("RobberyCover", reservation.RobberyCover);
             command.AddParameter("AgeRange", reservation.AgeRange);
-            command.AddParameter("PaidAll", reservation.PaidAll);
             command.AddParameter("IsCancelled", reservation.IsCancelled);
             command.AddParameter("UserId", reservation.UserId);
             command.AddParameter("AgencyId", reservation.AgencyId);

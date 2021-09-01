@@ -10,16 +10,18 @@ namespace ModelClient.Data
     public class ModeleClient : ModelGlobale
     {
         public ModeleClient(){}
-        public ModeleClient(int id, string name, int markId)
+        public ModeleClient(int id, string name, int markId, MarkGlobal mark)
         {
             Id = id;
             Name = name;
             MarkId = markId;
+            Mark = mark;
         }
-        public ModeleClient(string name, int markId)
+        public ModeleClient(string name, int markId, MarkGlobal mark)
         {
             Name = name;
             MarkId = markId;
+            Mark = mark;
         }
     }
 }

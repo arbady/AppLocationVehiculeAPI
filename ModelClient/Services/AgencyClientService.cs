@@ -32,6 +32,10 @@ namespace ModelClient.Services
         {
             return _agencyGlobalService.Get(id)?.ToAgencyClient();
         }
+        public AgencyClient GetForVehicle(int id)
+        {
+            return _agencyGlobalService.GetForVehicle(id)?.ToAgencyClient();
+        }
 
         public int Post(AgencyClient agency)
         {

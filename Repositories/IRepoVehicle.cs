@@ -13,5 +13,8 @@ namespace Repositories
         int Post(TVehicle vehicule);
         bool Put(int id, TVehicle vehicule);
         bool Delete(int id);
+        IEnumerable<TVehicle> GetDispoForVehicle(DateTime tdate, int idAgency, int idCategory);
+        IEnumerable<TVehicle> GetCatForVehicle(int id);
+        IEnumerable<TVehicle> GetVehiclesByAgency(int id);
     }
 }

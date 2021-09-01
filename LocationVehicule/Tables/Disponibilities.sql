@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Disponibilities]
 (
 	[Id] int IDENTITY(1,1) NOT NULL,
-	[AvailDateDepart] datetime2(7) NOT NULL,
-	[AvailDateReturn] datetime2(7) NOT NULL,
+	[EntryDate] datetime2(7) NOT NULL,
+	[IsInput] BIT NOT NULL,
 	[AgencyId] int NOT NULL,
 	[VehicleId] int NOT NULL, 
     CONSTRAINT [PK_Disponibilities] PRIMARY KEY ([Id]), 

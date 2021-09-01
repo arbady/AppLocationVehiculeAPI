@@ -34,6 +34,8 @@ namespace ModelClient.Services
             return _dispoGlobalService.Get(id)?.ToDisponibilitiesClient();
         }
 
+        
+
         public int Post(DisponibilitiesClient disponibilities)
         {
             return _dispoGlobalService.Post(disponibilities.ToDisponibilitiesGlobal());

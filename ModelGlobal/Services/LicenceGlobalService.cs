@@ -27,6 +27,14 @@ namespace ModelGlobal.Services
             return _connection.ExecuteReader(command, l => l.ToLicence());
         }
 
+        public IEnumerable<LicenceGlobal> GetForUser(int idUser)
+        {
+            Command command = new Command("SP_GetAllLicenceByUserId", true);
+            command.AddParameter("userid", idUser);
+            //chaque ligne du reader est convertie au format Licence
+            return _connection.ExecuteReader(command, l => l.ToLicence());
+        }
+
         public LicenceGlobal Get(int id)
         {
             Command command = new Command("SP_GetByIdLicence", true);

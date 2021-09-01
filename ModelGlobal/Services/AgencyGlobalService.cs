@@ -36,6 +36,13 @@ namespace ModelGlobal.Services
             //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
             return _connection.ExecuteReader(command, a => a.ToAgency()).SingleOrDefault();
         }
+        public AgencyGlobal GetForVehicle(int vehicleid)
+        {
+            Command command = new Command("SP_GetAgencyByIdVehicle", true);
+            command.AddParameter("idvehicle", vehicleid);
+            //le reader me renvoi un tableau même pour une seul valeur, je lui précise qu'il ne me faut que le premier résultat
+            return _connection.ExecuteReader(command, a => a.ToAgency()).SingleOrDefault();
+        }
 
         public int Post(AgencyGlobal agency)
         {

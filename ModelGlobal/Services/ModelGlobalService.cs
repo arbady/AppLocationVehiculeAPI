@@ -39,7 +39,7 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_InsertModel", true);
 
-            command.AddParameter("[Name]", model.Name);
+            command.AddParameter("Name", model.Name);
             command.AddParameter("MarkId", model.MarkId);
             //le output inserted.id me permet de récupérer la valeur de l'id autoincrémenter et de le renvoyer.
             return (int)_connection.ExecuteScalar(command);
@@ -49,7 +49,7 @@ namespace ModelGlobal.Services
         {
             Command command = new Command("SP_UpdateModel", true);
 
-            command.AddParameter("[Name]", model.Name);
+            command.AddParameter("Name", model.Name);
             command.AddParameter("MarkId", model.MarkId);
             command.AddParameter("id", id);
             //quoi qu'il arrive le resultat sera le nbr de ligne modifié

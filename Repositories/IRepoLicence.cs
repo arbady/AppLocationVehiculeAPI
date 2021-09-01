@@ -13,5 +13,6 @@ namespace Repositories
         int Post(TLicence licence);
         bool Put(int id, TLicence licence);
         bool Delete(int id);
+        IEnumerable<TLicence> GetForUser(int idUser);
     }
 }

@@ -13,7 +13,7 @@
 AS
 	BEGIN
 		UPDATE [User]
-		SET FirstName=@firstName, lastName=@LastName, Sex=@sex, BirthDate=@birthDate, Email=@email, 
+		SET FirstName=@firstName, LastName=@lastName, Sex=@sex, BirthDate=@birthDate, Email=@email, 
 		[Password]=dbo.SF_HashingPassword(@password, Salt), RegistrationDate=@registrationDate, 
 		[Address]=@address, Phone=@phone, [Role]=@role 
 		WHERE Id=@Id

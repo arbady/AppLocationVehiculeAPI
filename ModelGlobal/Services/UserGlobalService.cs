@@ -69,11 +69,11 @@ namespace ModelGlobal.Services
             command.AddParameter("Sex", user.Sex);
             command.AddParameter("DateOfBirth", user.BirthDate);
             command.AddParameter("Email", user.Email);
-            command.AddParameter("[Password]", user.Password);
+            command.AddParameter("Password", user.Password);
             command.AddParameter("RegistrationDate", user.RegistrationDate);
-            command.AddParameter("[Address]", user.Address);
+            command.AddParameter("Address", user.Address);
             command.AddParameter("Phone", user.Phone);
-            command.AddParameter("[Role]", user.Role);
+            command.AddParameter("Role", user.Role);
             command.AddParameter("id", id);
             //quoi qu'il arrive le resultat sera le nbr de ligne modifié
             //pour renvoyer un boolean, je fais un test == 1

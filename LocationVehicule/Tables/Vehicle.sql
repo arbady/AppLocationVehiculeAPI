@@ -15,5 +15,6 @@
     CONSTRAINT [PK_Vehicule] PRIMARY KEY ([Id]), 
     CONSTRAINT [FK_Vehicule_Etat] FOREIGN KEY (StateId) REFERENCES State(Id), 
     CONSTRAINT [FK_Vehicule_ModeleId] FOREIGN KEY (ModelId) REFERENCES Model(Id), 
-    CONSTRAINT [FK_Vehicule_Categorie] FOREIGN KEY (CategoryId) REFERENCES Category(Id) 
+    CONSTRAINT [FK_Vehicule_Categorie] FOREIGN KEY (CategoryId) REFERENCES Category(Id),
+	CONSTRAINT [UK_Vehicle_RegNum] UNIQUE (RegistrationNum)
 )
